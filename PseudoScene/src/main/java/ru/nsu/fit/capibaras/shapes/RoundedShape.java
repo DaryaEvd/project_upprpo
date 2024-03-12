@@ -26,4 +26,9 @@ public abstract class RoundedShape implements Shape {
     public Double getArea() {
         return Math.PI * minorAxis * majorAxis;
     }
+
+    @Override
+    public Double getPerimeter() {
+        return Math.PI * (minorAxis + majorAxis);
+    }
 }
