@@ -29,4 +29,9 @@ public abstract class AngularShape implements Shape {
     public Double getArea() {
         return base * side * Math.sin(angle);
     }
+
+    @Override
+    public Double getPerimeter() {
+        return 2 * (side + base);
+    }
 }

@@ -33,4 +33,9 @@ public final class Triangle extends AngularShape {
     public Double getArea() {
         return super.getArea() / 2;
     }
+
+    @Override
+    public Double getPerimeter(){
+        return super.base + super.side + otherSide;
+    }
 }

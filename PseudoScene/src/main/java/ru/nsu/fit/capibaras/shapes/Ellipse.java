@@ -11,4 +11,5 @@ public final class Ellipse extends RoundedShape {
     public ShapeType getShapeType() {
         return ShapeType.Ellipse;
     }
+
 }

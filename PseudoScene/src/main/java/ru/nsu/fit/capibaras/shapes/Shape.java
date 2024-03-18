@@ -11,4 +11,6 @@ public interface Shape {
     Collection<Characteristic> getCharacteristics();
 
     Double getArea();
+
+    Double getPerimeter();
 }
