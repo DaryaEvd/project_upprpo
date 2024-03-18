@@ -1,9 +1,9 @@
 package ru.nsu.fit.capibaras.shapes;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import ru.nsu.fit.capibaras.enums.ShapeType;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SquareTest {
 
