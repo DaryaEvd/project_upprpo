@@ -5,9 +5,9 @@ import ru.nsu.fit.capibaras.dtos.Characteristic;
 import java.util.Arrays;
 import java.util.Collection;
 
-public abstract class RoundedShape implements Shape {
-    protected Double majorAxis;
-    protected Double minorAxis;
+public abstract sealed class RoundedShape implements Shape permits Circle, Ellipse {
+    private final Double majorAxis;
+    private final Double minorAxis;
 
     public RoundedShape(Double majorAxis, Double minorAxis) {
         this.majorAxis = majorAxis;

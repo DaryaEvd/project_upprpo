@@ -5,7 +5,7 @@ import ru.nsu.fit.capibaras.dtos.Characteristic;
 import java.util.Arrays;
 import java.util.Collection;
 
-public abstract class AngularShape implements Shape {
+public abstract sealed class AngularShape implements Shape permits Parallelogram, Rectangle, Rhombus, Square, Triangle {
     protected Double base;
     protected Double side;
     protected Double angle;
