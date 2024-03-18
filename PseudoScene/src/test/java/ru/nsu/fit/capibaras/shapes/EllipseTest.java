@@ -8,7 +8,6 @@ import ru.nsu.fit.capibaras.enums.ShapeType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.nsu.fit.capibaras.shapes.TestUtils.roundToThousandths;
 
-
 public class EllipseTest {
 
     @Test

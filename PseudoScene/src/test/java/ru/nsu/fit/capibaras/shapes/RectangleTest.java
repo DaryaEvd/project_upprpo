@@ -5,7 +5,6 @@ import ru.nsu.fit.capibaras.enums.ShapeType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 public class RectangleTest {
 
     @Test
