@@ -12,8 +12,4 @@ public final class Ellipse extends RoundedShape {
         return ShapeType.Ellipse;
     }
 
-    @Override
-    public Double getPerimeter() {
-        return 2 * Math.PI * Math.sqrt((majorAxis * majorAxis + minorAxis * minorAxis) / 2);
-    }
 }
