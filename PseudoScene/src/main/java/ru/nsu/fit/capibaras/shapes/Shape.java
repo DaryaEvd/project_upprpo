@@ -5,7 +5,7 @@ import ru.nsu.fit.capibaras.enums.ShapeType;
 
 import java.util.Collection;
 
-public interface Shape {
+public sealed interface Shape permits AngularShape, RoundedShape {
     ShapeType getShapeType();
 
     Collection<Characteristic> getCharacteristics();
