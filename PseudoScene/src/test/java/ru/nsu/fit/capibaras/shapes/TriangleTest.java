@@ -12,4 +12,6 @@ public class TriangleTest {
         Triangle triangle = new Triangle(10., 10., 30.);
         assertEquals(ShapeType.Triangle, triangle.getShapeType());
     }
+
+    //TODO: тесты для площади будут написаны когда-нибудь потом
 }

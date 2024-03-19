@@ -18,7 +18,7 @@ public class CircleTest {
 
     @ParameterizedTest
     @CsvSource(
-            {"10.,314.159", "20.,1256.637", "1.,3.142", "30.,2827.433", "35.,3848.451"}
+            {"10.,314.159", "20.,1256.637", "1.,3.142", "30.,2827.433", "35.,3848.451", "1.5,7.069"}
     )
     void testAreaValue(Double radius, Double expected) {
         Circle circle = new Circle(radius);
