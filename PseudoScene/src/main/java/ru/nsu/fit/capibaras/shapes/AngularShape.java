@@ -13,7 +13,7 @@ public abstract sealed class AngularShape implements Shape permits Parallelogram
     public AngularShape(Double base, Double side, Double angle) {
         this.base = base;
         this.side = side;
-        this.angle = angle;
+        this.angle = Math.toRadians(angle);
     }
 
     @Override
