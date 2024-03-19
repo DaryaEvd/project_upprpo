@@ -11,7 +11,7 @@ public final class Triangle extends AngularShape {
 
     public Triangle(Double base, Double side, Double angle) {
         super(base, side, angle);
-        otherSide = Math.sqrt(base * base + side * side - 2 * base * side * Math.cos(angle));
+        otherSide = Math.sqrt(base * base + side * side - 2 * base * side * Math.cos(this.angle));
     }
 
     @Override
