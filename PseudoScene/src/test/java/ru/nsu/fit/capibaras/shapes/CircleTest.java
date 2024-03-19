@@ -25,4 +25,13 @@ public class CircleTest {
         assertEquals(expected, roundToThousandths(circle.getArea()));
     }
 
+    @ParameterizedTest
+    @CsvSource(
+            {"10.,62.832", "20.,125.664", "1.,6.283", "30.,188.496", "35.,219.911", "1.5,9.425"}
+    )
+    void testPerimeterValue(Double radius, Double expected) {
+        Circle circle = new Circle(radius);
+        assertEquals(expected, roundToThousandths(circle.getPerimeter()));
+    }
+
 }

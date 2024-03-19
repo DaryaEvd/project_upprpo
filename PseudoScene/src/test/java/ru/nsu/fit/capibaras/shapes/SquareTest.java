@@ -11,7 +11,7 @@ import static ru.nsu.fit.capibaras.shapes.TestUtils.roundToThousandths;
 public class SquareTest {
 
     @Test
-    public void testGetShapeType(){
+    public void testGetShapeType() {
         Square square = new Square(10.);
         assertEquals(ShapeType.Square, square.getShapeType());
     }
@@ -23,5 +23,14 @@ public class SquareTest {
     void testAreaValue(Double side, Double expected) {
         Square square = new Square(side);
         assertEquals(expected, roundToThousandths(square.getArea()));
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+            {"10.,40.", "20.,80.", "15.,60.", "30.,120.", "3.5,14.", "3.3,13.2"}
+    )
+    void testPerimeterValue(Double side, Double expected) {
+        Square square = new Square(side);
+        assertEquals(expected, roundToThousandths(square.getPerimeter()));
     }
 }

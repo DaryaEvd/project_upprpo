@@ -11,7 +11,7 @@ import static ru.nsu.fit.capibaras.shapes.TestUtils.roundToThousandths;
 public class EllipseTest {
 
     @Test
-    public void testGetShapeType(){
+    public void testGetShapeType() {
         Ellipse ellipse = new Ellipse(10., 11.);
         assertEquals(ShapeType.Ellipse, ellipse.getShapeType());
     }
@@ -23,5 +23,14 @@ public class EllipseTest {
     void testAreaValue(Double minorAxis, Double majorAxis, Double expected) {
         Ellipse ellipse = new Ellipse(minorAxis, majorAxis);
         assertEquals(expected, roundToThousandths(ellipse.getArea()));
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+            {"10.,20.,99.346", "20.,22.,132.096", "1.,1.,6.283", "30.,1.,133.361", "35.,6.,157.769", "1.5, 3.5,16.918"}
+    )
+    void testPerimeterValue(Double minorAxis, Double majorAxis, Double expected) {
+        Ellipse ellipse = new Ellipse(minorAxis, majorAxis);
+        assertEquals(expected, roundToThousandths(ellipse.getPerimeter()));
     }
 }

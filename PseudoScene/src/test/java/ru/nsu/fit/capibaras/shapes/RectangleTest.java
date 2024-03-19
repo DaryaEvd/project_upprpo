@@ -24,4 +24,14 @@ public class RectangleTest {
         Rectangle rectangle = new Rectangle(base, side);
         assertEquals(expected, roundToThousandths(rectangle.getArea()));
     }
+
+    @ParameterizedTest
+    @CsvSource(
+            {"10.,3.,26.", "20.,1.,42.", "15.,15.,60.", "30.,1.5,63.", "35.,2.,74.", "3.5,1.2,9.4"}
+    )
+    void testPerimeterValue(Double base, Double side, Double expected) {
+        Rectangle rectangle = new Rectangle(base, side);
+        assertEquals(expected, roundToThousandths(rectangle.getPerimeter()));
+    }
+
 }
