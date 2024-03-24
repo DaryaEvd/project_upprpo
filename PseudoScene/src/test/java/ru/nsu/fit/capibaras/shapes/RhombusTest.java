@@ -20,7 +20,7 @@ public class RhombusTest {
     @CsvSource(
             {"10.,30.,50.", "20.,20.,136.808", "15.,22.5,86.104", "30.,45.,636.396", "3.5,70.78,11.567"}
     )
-    void testAreaValue(Double side, Double angle, Double expected) {
+    void testAreaValue(double side, double angle, double expected) {
         Rhombus rhombus = new Rhombus(side, angle);
         assertEquals(expected, roundToThousandths(rhombus.getArea()));
     }
@@ -29,7 +29,7 @@ public class RhombusTest {
     @CsvSource(
             {"10.,30.,40.", "20.,20.,80.", "15.,22.5,60.", "30.,45.,120.", "3.5,70.78,14.", "3.3,1.2,13.2"}
     )
-    void testPerimeterValue(Double side, Double angle, Double expected) {
+    void testPerimeterValue(double side, double angle, double expected) {
         Rhombus rhombus = new Rhombus(side, angle);
         assertEquals(expected, roundToThousandths(rhombus.getPerimeter()));
     }
