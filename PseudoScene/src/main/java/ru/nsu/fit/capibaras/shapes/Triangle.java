@@ -6,12 +6,35 @@ import ru.nsu.fit.capibaras.enums.ShapeType;
 import java.util.Arrays;
 import java.util.Collection;
 
-public final class Triangle extends AngularShape {
-    private final Double otherSide;
+public final class Triangle implements Shape {
+    private final static double FULL_ANGLE_RADIANS = Math.PI;
+    private final Double firstSide;
+    private final Double secondSide;
+    private final Double thirdSide;
+    private final Double oppositeFirstSideAngleDegree;
+    private final Double oppositeSecondSideAngleDegree;
+    private final Double oppositeThirdSideAngleDegree;
 
-    public Triangle(Double base, Double side, Double angle) {
-        super(base, side, angle);
-        otherSide = Math.sqrt(base * base + side * side - 2 * base * side * Math.cos(this.angle));
+    //TODO: проверка что треугольник с такими сторонами вообще существует
+    public Triangle(double firstSide, double secondSide, double thirdSide) {
+        this.firstSide = firstSide;
+        this.secondSide = secondSide;
+        this.thirdSide = thirdSide;
+
+        double firstSideSquare = firstSide * firstSide;
+        double secondSideSquare = secondSide * secondSide;
+        double thirdSideSquare = thirdSide * thirdSide;
+
+        double oppositeFirstSideAngleRadians =
+                Math.acos((secondSideSquare + thirdSideSquare - firstSideSquare) / (2 * secondSide * thirdSide));
+        oppositeFirstSideAngleDegree = Math.toDegrees(oppositeFirstSideAngleRadians);
+
+        double oppositeSecondSideAngleRadians =
+                Math.acos((firstSideSquare + thirdSideSquare - secondSideSquare) / (2 * firstSide * thirdSide));
+        oppositeSecondSideAngleDegree = Math.toDegrees(oppositeSecondSideAngleRadians);
+
+        oppositeThirdSideAngleDegree =
+                Math.toDegrees(FULL_ANGLE_RADIANS - oppositeFirstSideAngleRadians - oppositeSecondSideAngleRadians);
     }
 
     @Override
@@ -22,20 +45,22 @@ public final class Triangle extends AngularShape {
     @Override
     public Collection<Characteristic> getCharacteristics() {
         return Arrays.asList(
-                new Characteristic("First side", base.toString()),
-                new Characteristic("Second side", side.toString()),
-                new Characteristic("Third side", otherSide.toString()),
-                new Characteristic("Angle between First and Second sides", angle.toString())
+                new Characteristic("First side", firstSide.toString()),
+                new Characteristic("Angle opposite the first side", oppositeFirstSideAngleDegree.toString()),
+                new Characteristic("Second side", secondSide.toString()),
+                new Characteristic("Angle opposite the second side", oppositeSecondSideAngleDegree.toString()),
+                new Characteristic("Third side", thirdSide.toString()),
+                new Characteristic("Angle opposite the third side", oppositeThirdSideAngleDegree.toString())
         );
     }
 
     @Override
     public Double getArea() {
-        return super.getArea() / 2;
+        return 0.5 * firstSide * secondSide * Math.sin(Math.toRadians(oppositeThirdSideAngleDegree));
     }
 
     @Override
     public Double getPerimeter(){
-        return super.base + super.side + otherSide;
+        return firstSide + secondSide + thirdSide;
     }
 }
