@@ -15,8 +15,7 @@ public final class Triangle implements Shape {
     private final Double oppositeSecondSideAngleDegree;
     private final Double oppositeThirdSideAngleDegree;
 
-    //TODO: проверка что треугольник с такими сторонами вообще существует
-    public Triangle(double firstSide, double secondSide, double thirdSide) {
+    private Triangle(double firstSide, double secondSide, double thirdSide) {
         this.firstSide = firstSide;
         this.secondSide = secondSide;
         this.thirdSide = thirdSide;
@@ -35,6 +34,13 @@ public final class Triangle implements Shape {
 
         oppositeThirdSideAngleDegree =
                 Math.toDegrees(FULL_ANGLE_RADIANS - oppositeFirstSideAngleRadians - oppositeSecondSideAngleRadians);
+    }
+
+    public static Triangle create(double firstSide, double secondSide, double thirdSide) throws ShapeCreatingException {
+        if (firstSide + secondSide > thirdSide && firstSide + thirdSide > secondSide && firstSide + thirdSide > secondSide) {
+            return new Triangle(firstSide, secondSide, thirdSide);
+        }
+        throw ShapeCreatingException.duplicateOption(firstSide, secondSide, thirdSide);
     }
 
     @Override
@@ -60,7 +66,7 @@ public final class Triangle implements Shape {
     }
 
     @Override
-    public Double getPerimeter(){
+    public Double getPerimeter() {
         return firstSide + secondSide + thirdSide;
     }
 }
