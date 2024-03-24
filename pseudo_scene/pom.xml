@@ -12,15 +12,8 @@
     </parent>
 
     <groupId>ru.nsu.fit.capibaras</groupId>
-    <artifactId>PseudoScene</artifactId>
+    <artifactId>pseudo_scene</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-<!--    <properties>-->
-<!--        <java.version>19</java.version>-->
-<!--        <maven.compiler.source>19</maven.compiler.source>-->
-<!--        <maven.compiler.target>19</maven.compiler.target>-->
-<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-<!--    </properties>-->
 
     <properties>
         <maven.compiler.release>19</maven.compiler.release>
