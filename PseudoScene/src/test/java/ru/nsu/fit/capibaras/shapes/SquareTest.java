@@ -20,7 +20,7 @@ public class SquareTest {
     @CsvSource(
             {"10.,100.", "20.,400.", "15.,225.", "1.5,2.25", "35.,1225.", "25.5,650.25"}
     )
-    void testAreaValue(Double side, Double expected) {
+    void testAreaValue(double side, double expected) {
         Square square = new Square(side);
         assertEquals(expected, roundToThousandths(square.getArea()));
     }
@@ -29,7 +29,7 @@ public class SquareTest {
     @CsvSource(
             {"10.,40.", "20.,80.", "15.,60.", "30.,120.", "3.5,14.", "3.3,13.2"}
     )
-    void testPerimeterValue(Double side, Double expected) {
+    void testPerimeterValue(double side, double expected) {
         Square square = new Square(side);
         assertEquals(expected, roundToThousandths(square.getPerimeter()));
     }

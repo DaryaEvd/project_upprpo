@@ -20,7 +20,7 @@ public class RectangleTest {
     @CsvSource(
             {"10.,3.,30.", "20.,1.,20.", "15.,15.,225.", "30.,1.5,45.", "35.,2.,70."}
     )
-    void testAreaValue(Double base, Double side, Double expected) {
+    void testAreaValue(double base, double side, double expected) {
         Rectangle rectangle = new Rectangle(base, side);
         assertEquals(expected, roundToThousandths(rectangle.getArea()));
     }
@@ -29,7 +29,7 @@ public class RectangleTest {
     @CsvSource(
             {"10.,3.,26.", "20.,1.,42.", "15.,15.,60.", "30.,1.5,63.", "35.,2.,74.", "3.5,1.2,9.4"}
     )
-    void testPerimeterValue(Double base, Double side, Double expected) {
+    void testPerimeterValue(double base, double side, double expected) {
         Rectangle rectangle = new Rectangle(base, side);
         assertEquals(expected, roundToThousandths(rectangle.getPerimeter()));
     }

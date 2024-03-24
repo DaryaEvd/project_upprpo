@@ -20,7 +20,7 @@ public class CircleTest {
     @CsvSource(
             {"10.,314.159", "20.,1256.637", "1.,3.142", "30.,2827.433", "35.,3848.451", "1.5,7.069"}
     )
-    void testAreaValue(Double radius, Double expected) {
+    void testAreaValue(double radius, double expected) {
         Circle circle = new Circle(radius);
         assertEquals(expected, roundToThousandths(circle.getArea()));
     }
@@ -29,7 +29,7 @@ public class CircleTest {
     @CsvSource(
             {"10.,62.832", "20.,125.664", "1.,6.283", "30.,188.496", "35.,219.911", "1.5,9.425"}
     )
-    void testPerimeterValue(Double radius, Double expected) {
+    void testPerimeterValue(double radius, double expected) {
         Circle circle = new Circle(radius);
         assertEquals(expected, roundToThousandths(circle.getPerimeter()));
     }
