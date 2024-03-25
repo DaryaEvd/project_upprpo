@@ -40,7 +40,7 @@ public final class Triangle implements Shape {
         if (firstSide + secondSide > thirdSide && firstSide + thirdSide > secondSide && firstSide + thirdSide > secondSide) {
             return new Triangle(firstSide, secondSide, thirdSide);
         }
-        throw ShapeCreatingException.duplicateOption(firstSide, secondSide, thirdSide);
+        throw ShapeCreatingException.notExistingTriangle(firstSide, secondSide, thirdSide);
     }
 
     @Override
