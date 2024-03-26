@@ -3,6 +3,7 @@ package ru.nsu.fit.capibaras.shapes;
 import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -17,9 +18,9 @@ public final class Ellipse extends Shape {
 
     @Override
     public Collection<Characteristic> getCharacteristics() {
-        Collection<Characteristic> characteristics = Arrays.asList(
+        Collection<Characteristic> characteristics = new ArrayList<>(Arrays.asList(
                 new Characteristic("Major axis", majorAxis.toString()),
-                new Characteristic("Minor axis", minorAxis.toString()));
+                new Characteristic("Minor axis", minorAxis.toString())));
         characteristics.addAll(super.getCharacteristics());
         return characteristics;
     }

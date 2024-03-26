@@ -3,6 +3,7 @@ package ru.nsu.fit.capibaras.shapes;
 import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -22,9 +23,9 @@ public final class Rhombus extends Shape {
 
     @Override
     public Collection<Characteristic> getCharacteristics() {
-        Collection<Characteristic> characteristics = Arrays.asList(
+        Collection<Characteristic> characteristics = new ArrayList<>(Arrays.asList(
                 new Characteristic("Side", side.toString()),
-                new Characteristic("Angle", String.valueOf(Math.toDegrees(angle))));
+                new Characteristic("Angle", String.valueOf(Math.toDegrees(angle)))));
         characteristics.addAll(super.getCharacteristics());
         return characteristics;
     }

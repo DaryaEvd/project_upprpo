@@ -3,6 +3,7 @@ package ru.nsu.fit.capibaras.shapes;
 import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -50,13 +51,13 @@ public final class Triangle extends Shape {
 
     @Override
     public Collection<Characteristic> getCharacteristics() {
-        Collection<Characteristic> characteristics = Arrays.asList(
+        Collection<Characteristic> characteristics = new ArrayList<>(Arrays.asList(
                 new Characteristic("First side", firstSide.toString()),
                 new Characteristic("Angle opposite the first side", oppositeFirstSideAngleDegree.toString()),
                 new Characteristic("Second side", secondSide.toString()),
                 new Characteristic("Angle opposite the second side", oppositeSecondSideAngleDegree.toString()),
                 new Characteristic("Third side", thirdSide.toString()),
-                new Characteristic("Angle opposite the third side", oppositeThirdSideAngleDegree.toString()));
+                new Characteristic("Angle opposite the third side", oppositeThirdSideAngleDegree.toString())));
         characteristics.addAll(super.getCharacteristics());
         return characteristics;
     }
