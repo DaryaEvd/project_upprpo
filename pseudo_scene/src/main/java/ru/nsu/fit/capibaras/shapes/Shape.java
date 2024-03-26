@@ -5,7 +5,7 @@ import ru.nsu.fit.capibaras.enums.ShapeType;
 
 import java.util.Collection;
 
-public sealed interface Shape permits QuadrangularShape, RoundedShape, Triangle {
+public sealed interface Shape permits QuadrangularShape, Triangle, Circle, Ellipse {
     ShapeType getShapeType();
 
     Collection<Characteristic> getCharacteristics();
