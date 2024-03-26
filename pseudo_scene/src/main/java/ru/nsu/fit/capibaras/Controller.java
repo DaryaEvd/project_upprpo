@@ -19,8 +19,6 @@ public class Controller {
     @GetMapping("/shape/rectangle")
     public Rectangle getRectangle(@RequestParam(value = "side") double rectangleSide,
                                     @RequestParam(value = "base") double rectangleBase) {
-        System.out.println(rectangleBase);
-        System.out.println(rectangleSide);
         return new Rectangle(rectangleBase, rectangleSide);
     }
 
