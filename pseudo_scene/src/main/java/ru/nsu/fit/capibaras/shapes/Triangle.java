@@ -6,14 +6,14 @@ import ru.nsu.fit.capibaras.enums.ShapeType;
 import java.util.Arrays;
 import java.util.Collection;
 
-public final class Triangle implements Shape {
+public final class Triangle extends Shape {
     private final static double FULL_ANGLE_RADIANS = Math.PI;
-    private final Double firstSide;
-    private final Double secondSide;
-    private final Double thirdSide;
-    private final Double oppositeFirstSideAngleDegree;
-    private final Double oppositeSecondSideAngleDegree;
-    private final Double oppositeThirdSideAngleDegree;
+    private Double firstSide;
+    private Double secondSide;
+    private Double thirdSide;
+    private Double oppositeFirstSideAngleDegree;
+    private Double oppositeSecondSideAngleDegree;
+    private Double oppositeThirdSideAngleDegree;
 
     private Triangle(double firstSide, double secondSide, double thirdSide) {
         this.firstSide = firstSide;
@@ -50,14 +50,15 @@ public final class Triangle implements Shape {
 
     @Override
     public Collection<Characteristic> getCharacteristics() {
-        return Arrays.asList(
+        Collection<Characteristic> characteristics = Arrays.asList(
                 new Characteristic("First side", firstSide.toString()),
                 new Characteristic("Angle opposite the first side", oppositeFirstSideAngleDegree.toString()),
                 new Characteristic("Second side", secondSide.toString()),
                 new Characteristic("Angle opposite the second side", oppositeSecondSideAngleDegree.toString()),
                 new Characteristic("Third side", thirdSide.toString()),
-                new Characteristic("Angle opposite the third side", oppositeThirdSideAngleDegree.toString())
-        );
+                new Characteristic("Angle opposite the third side", oppositeThirdSideAngleDegree.toString()));
+        characteristics.addAll(super.getCharacteristics());
+        return characteristics;
     }
 
     @Override
@@ -68,5 +69,53 @@ public final class Triangle implements Shape {
     @Override
     public Double getPerimeter() {
         return firstSide + secondSide + thirdSide;
+    }
+
+    public Double getFirstSide() {
+        return firstSide;
+    }
+
+    public Double getSecondSide() {
+        return secondSide;
+    }
+
+    public Double getThirdSide() {
+        return thirdSide;
+    }
+
+    public Double getOppositeFirstSideAngleDegree() {
+        return oppositeFirstSideAngleDegree;
+    }
+
+    public Double getOppositeSecondSideAngleDegree() {
+        return oppositeSecondSideAngleDegree;
+    }
+
+    public Double getOppositeThirdSideAngleDegree() {
+        return oppositeThirdSideAngleDegree;
+    }
+
+    public void setFirstSide(Double firstSide) {
+        this.firstSide = firstSide;
+    }
+
+    public void setSecondSide(Double secondSide) {
+        this.secondSide = secondSide;
+    }
+
+    public void setThirdSide(Double thirdSide) {
+        this.thirdSide = thirdSide;
+    }
+
+    public void setOppositeFirstSideAngleDegree(Double oppositeFirstSideAngleDegree) {
+        this.oppositeFirstSideAngleDegree = oppositeFirstSideAngleDegree;
+    }
+
+    public void setOppositeSecondSideAngleDegree(Double oppositeSecondSideAngleDegree) {
+        this.oppositeSecondSideAngleDegree = oppositeSecondSideAngleDegree;
+    }
+
+    public void setOppositeThirdSideAngleDegree(Double oppositeThirdSideAngleDegree) {
+        this.oppositeThirdSideAngleDegree = oppositeThirdSideAngleDegree;
     }
 }

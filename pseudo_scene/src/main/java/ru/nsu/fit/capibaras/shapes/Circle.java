@@ -3,10 +3,11 @@ package ru.nsu.fit.capibaras.shapes;
 import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
-public final class Circle implements Shape {
+public final class Circle extends Shape {
     private Double radius;
 
     public Circle(Double radius) {
@@ -20,8 +21,10 @@ public final class Circle implements Shape {
 
     @Override
     public Collection<Characteristic> getCharacteristics() {
-        return Arrays.asList(
-                new Characteristic("Radius", radius.toString()));
+        Collection<Characteristic> characteristics = new ArrayList<>(Collections.singleton(
+                new Characteristic("Radius", radius.toString())));
+        characteristics.addAll(super.getCharacteristics());
+        return characteristics;
     }
 
     @Override

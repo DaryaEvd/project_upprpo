@@ -6,7 +6,7 @@ import ru.nsu.fit.capibaras.enums.ShapeType;
 import java.util.Arrays;
 import java.util.Collection;
 
-public final class Ellipse implements Shape {
+public final class Ellipse extends Shape {
     private Double majorAxis;
     private Double minorAxis;
 
@@ -17,9 +17,11 @@ public final class Ellipse implements Shape {
 
     @Override
     public Collection<Characteristic> getCharacteristics() {
-        return Arrays.asList(
+        Collection<Characteristic> characteristics = Arrays.asList(
                 new Characteristic("Major axis", majorAxis.toString()),
                 new Characteristic("Minor axis", minorAxis.toString()));
+        characteristics.addAll(super.getCharacteristics());
+        return characteristics;
     }
 
     @Override

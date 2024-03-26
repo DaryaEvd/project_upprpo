@@ -5,10 +5,10 @@ import ru.nsu.fit.capibaras.dtos.Characteristic;
 import java.util.Arrays;
 import java.util.Collection;
 
-public abstract sealed class QuadrangularShape implements Shape permits Parallelogram, Rectangle, Rhombus, Square {
-    protected Double base;
-    protected Double side;
-    protected Double angle;
+public abstract sealed class QuadrangularShape extends Shape permits Parallelogram, Rectangle, Rhombus, Square {
+    private Double base;
+    private Double side;
+    private Double angle;
 
     public QuadrangularShape(Double base, Double side, Double angle) {
         this.base = base;
@@ -18,11 +18,12 @@ public abstract sealed class QuadrangularShape implements Shape permits Parallel
 
     @Override
     public Collection<Characteristic> getCharacteristics() {
-        return Arrays.asList(
+        Collection<Characteristic> characteristics = Arrays.asList(
                 new Characteristic("Base", base.toString()),
                 new Characteristic("Side", side.toString()),
-                new Characteristic("Angle", angle.toString())
-        );
+                new Characteristic("Angle", String.valueOf(Math.toDegrees(angle))));
+        characteristics.addAll(super.getCharacteristics());
+        return characteristics;
     }
 
     @Override
@@ -33,5 +34,29 @@ public abstract sealed class QuadrangularShape implements Shape permits Parallel
     @Override
     public Double getPerimeter() {
         return 2 * (side + base);
+    }
+
+    public Double getBase() {
+        return base;
+    }
+
+    public Double getAngle() {
+        return angle;
+    }
+
+    public Double getSide() {
+        return side;
+    }
+
+    public void setAngle(Double angle) {
+        this.angle = angle;
+    }
+
+    public void setBase(Double base) {
+        this.base = base;
+    }
+
+    public void setSide(Double side) {
+        this.side = side;
     }
 }

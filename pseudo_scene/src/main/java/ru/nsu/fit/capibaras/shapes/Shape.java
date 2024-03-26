@@ -3,14 +3,19 @@ package ru.nsu.fit.capibaras.shapes;
 import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
 
+import java.util.Arrays;
 import java.util.Collection;
 
-public sealed interface Shape permits QuadrangularShape, Triangle, Circle, Ellipse {
-    ShapeType getShapeType();
+public sealed abstract class Shape permits QuadrangularShape, Triangle, Circle, Ellipse {
+    public abstract ShapeType getShapeType();
 
-    Collection<Characteristic> getCharacteristics();
+    public Collection<Characteristic> getCharacteristics(){
+        return Arrays.asList(
+                    new Characteristic("Area", String.valueOf(getArea())),
+                    new Characteristic("Perimeter", String.valueOf(getPerimeter())));
+    }
 
-    Double getArea();
+    public abstract Double getArea();
 
-    Double getPerimeter();
+    public abstract Double getPerimeter();
 }
