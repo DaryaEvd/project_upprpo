@@ -1,14 +1,57 @@
 package ru.nsu.fit.capibaras.shapes;
 
+import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
 
-public final class Rhombus extends QuadrangularShape {
+import java.util.Arrays;
+import java.util.Collection;
+
+public final class Rhombus extends Shape {
+    private Double side;
+    private Double angle;
+
     public Rhombus(Double side, Double angle) {
-        super(side, side, angle);
+        this.side = side;
+        this.angle = angle;
     }
 
     @Override
     public ShapeType getShapeType() {
         return ShapeType.Rhombus;
+    }
+
+    @Override
+    public Collection<Characteristic> getCharacteristics() {
+        Collection<Characteristic> characteristics = Arrays.asList(
+                new Characteristic("Side", side.toString()),
+                new Characteristic("Angle", String.valueOf(Math.toDegrees(angle))));
+        characteristics.addAll(super.getCharacteristics());
+        return characteristics;
+    }
+
+    @Override
+    public Double getArea() {
+        return side * side * Math.sin(Math.toRadians(angle));
+    }
+
+    @Override
+    public Double getPerimeter() {
+        return 4 * side;
+    }
+
+    public Double getAngle() {
+        return angle;
+    }
+
+    public Double getSide() {
+        return side;
+    }
+
+    public void setAngle(Double angle) {
+        this.angle = angle;
+    }
+
+    public void setSide(Double side) {
+        this.side = side;
     }
 }
