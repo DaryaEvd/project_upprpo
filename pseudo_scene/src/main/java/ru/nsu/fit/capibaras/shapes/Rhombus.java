@@ -11,9 +11,16 @@ public final class Rhombus extends Shape {
     private Double side;
     private Double angle;
 
-    public Rhombus(Double side, Double angle) {
+    private Rhombus(Double side, Double angle) {
         this.side = side;
         this.angle = angle;
+    }
+
+    public static Rhombus create(double side, double angle) throws ShapeCreatingException {
+        if (side < 0 || angle < 0) {
+            throw ShapeCreatingException.negativeParameterValue();
+        }
+        return new Rhombus(side, angle);
     }
 
     @Override

@@ -11,9 +11,16 @@ public final class Ellipse extends Shape {
     private Double majorAxis;
     private Double minorAxis;
 
-    public Ellipse(Double majorAxis, Double minorAxis) {
+    private Ellipse(Double majorAxis, Double minorAxis) {
         this.majorAxis = majorAxis;
         this.minorAxis = minorAxis;
+    }
+
+    public static Ellipse create(double majorAxis, double minorAxis) throws ShapeCreatingException {
+        if (minorAxis < 0 || majorAxis < 0) {
+            throw ShapeCreatingException.negativeParameterValue();
+        }
+        return new Ellipse(majorAxis, minorAxis);
     }
 
     @Override

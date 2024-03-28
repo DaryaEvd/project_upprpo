@@ -11,9 +11,16 @@ public final class Rectangle extends Shape {
     private Double base;
     private Double side;
 
-    public Rectangle(Double base, Double side) {
+    private Rectangle(Double base, Double side) {
         this.base = base;
         this.side = side;
+    }
+
+    public static Rectangle create(double base, double side) throws ShapeCreatingException {
+        if (base < 0 || side < 0) {
+            throw ShapeCreatingException.negativeParameterValue();
+        }
+        return new Rectangle(base, side);
     }
 
     @Override

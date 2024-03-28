@@ -12,10 +12,17 @@ public final class Parallelogram extends Shape {
     private Double side;
     private Double angle;
 
-    public Parallelogram(Double base, Double side, Double angle) {
+    private Parallelogram(Double base, Double side, Double angle) {
         this.angle = angle;
         this.side = side;
         this.base = base;
+    }
+
+    public static Parallelogram create(double base, double side, double angle) throws ShapeCreatingException {
+        if (base < 0 || side < 0 || angle < 0) {
+            throw ShapeCreatingException.negativeParameterValue();
+        }
+        return new Parallelogram(base, side, angle);
     }
 
     @Override

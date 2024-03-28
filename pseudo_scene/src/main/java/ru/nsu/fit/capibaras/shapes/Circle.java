@@ -10,8 +10,15 @@ import java.util.Collections;
 public final class Circle extends Shape {
     private Double radius;
 
-    public Circle(Double radius) {
+    private Circle(Double radius) {
         this.radius = radius;
+    }
+
+    public static Circle create(double radius) throws ShapeCreatingException {
+        if (radius < 0) {
+            throw ShapeCreatingException.negativeParameterValue();
+        }
+        return new Circle(radius);
     }
 
     @Override

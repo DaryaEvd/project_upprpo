@@ -38,6 +38,9 @@ public final class Triangle extends Shape {
     }
 
     public static Triangle create(double firstSide, double secondSide, double thirdSide) throws ShapeCreatingException {
+        if (firstSide < 0 || secondSide < 0 || thirdSide < 0) {
+            throw ShapeCreatingException.negativeParameterValue();
+        }
         if (firstSide + secondSide > thirdSide && firstSide + thirdSide > secondSide && firstSide + thirdSide > secondSide) {
             return new Triangle(firstSide, secondSide, thirdSide);
         }

@@ -18,8 +18,8 @@ public class Controller {
 
     @GetMapping("/shape/rectangle")
     public Rectangle getRectangle(@RequestParam(value = "side") double rectangleSide,
-                                    @RequestParam(value = "base") double rectangleBase) {
-        return new Rectangle(rectangleBase, rectangleSide);
+                                    @RequestParam(value = "base") double rectangleBase) throws ShapeCreatingException {
+        return Rectangle.create(rectangleBase, rectangleSide);
     }
 
     @PostMapping("/shape/triangle")
@@ -32,30 +32,30 @@ public class Controller {
     @GetMapping("/shape/parallelogram")
     public Shape getParallelogram(@RequestParam(value = "side") double parallelogramSide,
                                     @RequestParam(value = "base") double parallelogramBase,
-                                    @RequestParam(value = "angle") double parallelogramAngle) {
-        return new Parallelogram(parallelogramBase, parallelogramSide, parallelogramAngle);
+                                    @RequestParam(value = "angle") double parallelogramAngle) throws ShapeCreatingException {
+        return Parallelogram.create(parallelogramBase, parallelogramSide, parallelogramAngle);
     }
 
     @GetMapping("/shape/rhombus")
     public Shape getRhombus(@RequestParam(value = "side") double rhombusSide,
-                                        @RequestParam(value = "angle") double rhombusAngle) {
-        return new Rhombus(rhombusSide, rhombusAngle);
+                                        @RequestParam(value = "angle") double rhombusAngle) throws ShapeCreatingException {
+        return Rhombus.create(rhombusSide, rhombusAngle);
     }
 
     @GetMapping("/shape/circle")
-    public Shape getCircle(@RequestParam(value = "radius") double circleRadius) {
-        return new Circle(circleRadius);
+    public Shape getCircle(@RequestParam(value = "radius") double circleRadius) throws ShapeCreatingException {
+        return Circle.create(circleRadius);
     }
 
     @GetMapping("/shape/ellipse")
     public Shape getEllipse(@RequestParam(value = "major_axis") double ellipseMajorAxis,
-                                  @RequestParam(value = "minor_axis") double ellipseMinorAxis) {
-        return new Ellipse(ellipseMajorAxis, ellipseMinorAxis);
+                                  @RequestParam(value = "minor_axis") double ellipseMinorAxis) throws ShapeCreatingException {
+        return Ellipse.create(ellipseMajorAxis, ellipseMinorAxis);
     }
 
     @GetMapping("/shape/square")
-    public Shape getSquare(@RequestParam(value = "side") double squareSide) {
-        return new Square(squareSide);
+    public Shape getSquare(@RequestParam(value = "side") double squareSide) throws ShapeCreatingException {
+        return Square.create(squareSide);
     }
 
 }
