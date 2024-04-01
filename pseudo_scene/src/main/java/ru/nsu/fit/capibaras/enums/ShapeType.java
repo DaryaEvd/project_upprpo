@@ -1,11 +1,11 @@
 package ru.nsu.fit.capibaras.enums;
 
 public enum ShapeType {
-    Circle,
-    Ellipse,
-    Parallelogram,
-    Rectangle,
-    Rhombus,
-    Square,
-    Triangle
+    CIRCLE,
+    ELLIPSE,
+    PARALLELOGRAM,
+    RECTANGLE,
+    RHOMBUS,
+    SQUARE,
+    TRIANGLE
 }

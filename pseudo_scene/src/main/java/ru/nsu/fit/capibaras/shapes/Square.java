@@ -10,7 +10,7 @@ import java.util.Collections;
 public final class Square extends Shape {
     private Double side;
 
-    private Square(Double side) {
+    public Square(Double side) {
         this.side = side;
     }
 
@@ -23,7 +23,7 @@ public final class Square extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Square;
+        return ShapeType.SQUARE;
     }
 
     @Override

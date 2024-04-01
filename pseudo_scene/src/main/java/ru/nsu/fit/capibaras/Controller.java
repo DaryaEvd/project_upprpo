@@ -4,58 +4,83 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.nsu.fit.capibaras.enums.ShapeType;
 import ru.nsu.fit.capibaras.shapes.*;
 
+import java.util.Arrays;
 import java.util.List;
+
+import static ru.nsu.fit.capibaras.Main.CLIENT_DATA_MANAGER;
+
 
 @RestController
 public class Controller {
-
     @GetMapping("/shape/list")
-    public List<Shape> getShapeLists() {
-        return null;
+    public List<Shape> getShapeLists(@RequestParam(value = "client_id") String clientId) {
+        return CLIENT_DATA_MANAGER.getShapes(clientId);
     }
 
-    @GetMapping("/shape/rectangle")
-    public Rectangle getRectangle(@RequestParam(value = "side") double rectangleSide,
-                                    @RequestParam(value = "base") double rectangleBase) throws ShapeCreatingException {
-        return Rectangle.create(rectangleBase, rectangleSide);
+    @PostMapping("/shape/list")
+    public List<String> getShapeLists() {
+        return Arrays.stream(ShapeType.values()).map(Enum::name).toList();
+    }
+
+    @PostMapping("/shape/rectangle")
+    public void getRectangle(@RequestParam(value = "client_id") String clientId,
+                             @RequestParam(value = "side") double rectangleSide,
+                             @RequestParam(value = "base") double rectangleBase) throws ShapeCreatingException {
+        Rectangle rectangle = Rectangle.create(rectangleBase, rectangleSide);
+        CLIENT_DATA_MANAGER.saveShape(clientId, rectangle);
     }
 
     @PostMapping("/shape/triangle")
-    public Shape getTriangle(@RequestParam(value = "first_side") double triangleFirstSide,
-                                   @RequestParam(value = "second_side") double triangleSecondSide,
-                                   @RequestParam(value = "third_side") double triangleThirdSide) throws ShapeCreatingException {
-        return Triangle.create(triangleFirstSide, triangleSecondSide, triangleThirdSide);
+    public void getTriangle(@RequestParam(value = "client_id") String clientId,
+                            @RequestParam(value = "first_side") double triangleFirstSide,
+                            @RequestParam(value = "second_side") double triangleSecondSide,
+                            @RequestParam(value = "third_side") double triangleThirdSide)
+            throws ShapeCreatingException {
+        Triangle triangle = Triangle.create(triangleFirstSide, triangleSecondSide, triangleThirdSide);
+        CLIENT_DATA_MANAGER.saveShape(clientId, triangle);
     }
 
-    @GetMapping("/shape/parallelogram")
-    public Shape getParallelogram(@RequestParam(value = "side") double parallelogramSide,
-                                    @RequestParam(value = "base") double parallelogramBase,
-                                    @RequestParam(value = "angle") double parallelogramAngle) throws ShapeCreatingException {
-        return Parallelogram.create(parallelogramBase, parallelogramSide, parallelogramAngle);
+    @PostMapping("/shape/parallelogram")
+    public void getParallelogram(@RequestParam(value = "client_id") String clientId,
+                                 @RequestParam(value = "side") double parallelogramSide,
+                                 @RequestParam(value = "base") double parallelogramBase,
+                                 @RequestParam(value = "angle") double parallelogramAngle)
+            throws ShapeCreatingException {
+        Parallelogram parallelogram = Parallelogram.create(parallelogramBase, parallelogramSide, parallelogramAngle);
+        CLIENT_DATA_MANAGER.saveShape(clientId, parallelogram);
     }
 
-    @GetMapping("/shape/rhombus")
-    public Shape getRhombus(@RequestParam(value = "side") double rhombusSide,
-                                        @RequestParam(value = "angle") double rhombusAngle) throws ShapeCreatingException {
-        return Rhombus.create(rhombusSide, rhombusAngle);
+    @PostMapping("/shape/rhombus")
+    public void getRhombus(@RequestParam(value = "client_id") String clientId,
+                           @RequestParam(value = "side") double rhombusSide,
+                           @RequestParam(value = "angle") double rhombusAngle) throws ShapeCreatingException {
+        Rhombus rhombus = Rhombus.create(rhombusSide, rhombusAngle);
+        CLIENT_DATA_MANAGER.saveShape(clientId, rhombus);
     }
 
-    @GetMapping("/shape/circle")
-    public Shape getCircle(@RequestParam(value = "radius") double circleRadius) throws ShapeCreatingException {
-        return Circle.create(circleRadius);
+    @PostMapping("/shape/circle")
+    public void getCircle(@RequestParam(value = "client_id") String clientId,
+                          @RequestParam(value = "radius") double circleRadius) throws ShapeCreatingException {
+        Circle circle = Circle.create(circleRadius);
+        CLIENT_DATA_MANAGER.saveShape(clientId, circle);
     }
 
-    @GetMapping("/shape/ellipse")
-    public Shape getEllipse(@RequestParam(value = "major_axis") double ellipseMajorAxis,
-                                  @RequestParam(value = "minor_axis") double ellipseMinorAxis) throws ShapeCreatingException {
-        return Ellipse.create(ellipseMajorAxis, ellipseMinorAxis);
+    @PostMapping("/shape/ellipse")
+    public void getEllipse(@RequestParam(value = "client_id") String clientId,
+                           @RequestParam(value = "major_axis") double ellipseMajorAxis,
+                           @RequestParam(value = "minor_axis") double ellipseMinorAxis) throws ShapeCreatingException {
+        Ellipse ellipse = Ellipse.create(ellipseMajorAxis, ellipseMinorAxis);
+        CLIENT_DATA_MANAGER.saveShape(clientId, ellipse);
     }
 
-    @GetMapping("/shape/square")
-    public Shape getSquare(@RequestParam(value = "side") double squareSide) throws ShapeCreatingException {
-        return Square.create(squareSide);
+    @PostMapping("/shape/square")
+    public void getSquare(@RequestParam(value = "client_id") String clientId,
+                          @RequestParam(value = "side") double squareSide) throws ShapeCreatingException {
+        Square square = Square.create(squareSide);
+        CLIENT_DATA_MANAGER.saveShape(clientId, square);
     }
 
 }

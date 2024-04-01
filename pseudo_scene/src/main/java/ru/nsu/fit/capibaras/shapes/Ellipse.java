@@ -11,7 +11,7 @@ public final class Ellipse extends Shape {
     private Double majorAxis;
     private Double minorAxis;
 
-    private Ellipse(Double majorAxis, Double minorAxis) {
+    public Ellipse(Double majorAxis, Double minorAxis) {
         this.majorAxis = majorAxis;
         this.minorAxis = minorAxis;
     }
@@ -34,7 +34,7 @@ public final class Ellipse extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Ellipse;
+        return ShapeType.ELLIPSE;
     }
 
     @Override

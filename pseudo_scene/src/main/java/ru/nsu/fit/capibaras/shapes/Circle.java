@@ -10,7 +10,7 @@ import java.util.Collections;
 public final class Circle extends Shape {
     private Double radius;
 
-    private Circle(Double radius) {
+    public Circle(Double radius) {
         this.radius = radius;
     }
 
@@ -23,7 +23,7 @@ public final class Circle extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Circle;
+        return ShapeType.CIRCLE;
     }
 
     @Override

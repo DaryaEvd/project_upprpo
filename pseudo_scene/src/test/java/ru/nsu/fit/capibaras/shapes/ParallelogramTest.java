@@ -13,7 +13,7 @@ public class ParallelogramTest {
     @Test
     public void testGetShapeType() {
         Parallelogram parallelogram = new Parallelogram(10., 10., 30.);
-        assertEquals(ShapeType.Parallelogram, parallelogram.getShapeType());
+        assertEquals(ShapeType.PARALLELOGRAM, parallelogram.getShapeType());
     }
 
     @ParameterizedTest

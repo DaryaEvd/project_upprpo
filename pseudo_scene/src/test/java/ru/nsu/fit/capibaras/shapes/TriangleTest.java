@@ -14,7 +14,7 @@ public class TriangleTest {
     @Test
     public void testGetShapeType() throws ShapeCreatingException {
         Triangle triangle = Triangle.create(10., 10., 9.);
-        assertEquals(ShapeType.Triangle, triangle.getShapeType());
+        assertEquals(ShapeType.TRIANGLE, triangle.getShapeType());
     }
 
     @Test

@@ -16,7 +16,7 @@ public final class Triangle extends Shape {
     private Double oppositeSecondSideAngleDegree;
     private Double oppositeThirdSideAngleDegree;
 
-    private Triangle(double firstSide, double secondSide, double thirdSide) {
+    public Triangle(double firstSide, double secondSide, double thirdSide) {
         this.firstSide = firstSide;
         this.secondSide = secondSide;
         this.thirdSide = thirdSide;
@@ -49,7 +49,7 @@ public final class Triangle extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Triangle;
+        return ShapeType.TRIANGLE;
     }
 
     @Override

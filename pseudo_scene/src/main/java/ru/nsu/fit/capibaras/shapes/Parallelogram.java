@@ -12,7 +12,7 @@ public final class Parallelogram extends Shape {
     private Double side;
     private Double angle;
 
-    private Parallelogram(Double base, Double side, Double angle) {
+    public Parallelogram(Double base, Double side, Double angle) {
         this.angle = angle;
         this.side = side;
         this.base = base;
@@ -27,7 +27,7 @@ public final class Parallelogram extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Parallelogram;
+        return ShapeType.PARALLELOGRAM;
     }
 
     @Override

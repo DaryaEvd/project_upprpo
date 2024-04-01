@@ -11,7 +11,7 @@ public final class Rhombus extends Shape {
     private Double side;
     private Double angle;
 
-    private Rhombus(Double side, Double angle) {
+    public Rhombus(Double side, Double angle) {
         this.side = side;
         this.angle = angle;
     }
@@ -25,7 +25,7 @@ public final class Rhombus extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Rhombus;
+        return ShapeType.RHOMBUS;
     }
 
     @Override
