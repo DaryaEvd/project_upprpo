@@ -27,6 +27,7 @@ public class ClientDataService {
             data = gson.fromJson(reader, type);
             data = Objects.requireNonNullElseGet(data, HashMap::new);
         } catch (IOException e) {
+            System.err.println(e.getMessage());
             data = new HashMap<>();
         }
         clientData = data;
@@ -42,7 +43,7 @@ public class ClientDataService {
         try (Writer writer = new FileWriter(CLIENT_DATA_FILE.toString())) {
             gson.toJson(clientData, writer);
         } catch (IOException e) {
-            //TODO
+            System.err.println(e.getMessage());
         }
     }
 
@@ -67,7 +68,7 @@ public class ClientDataService {
         try (Writer writer = new FileWriter(CLIENT_DATA_FILE.toString())) {
             gson.toJson(clientData, writer);
         } catch (IOException e) {
-            //TODO
+            System.err.println(e.getMessage());
         }
     }
 }
