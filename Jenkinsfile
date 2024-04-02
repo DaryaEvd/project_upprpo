@@ -2,20 +2,11 @@
     agent any
      
     stages {
-        stage("init") {
-            steps {
-                echo 'initing project'
-            }
-        }
         stage("build") {
             steps {
-                  echo 'building project'
+                mvn clean install
             }
         }
-        stage("test") { 
-            steps {
-              echo 'testing project' 
-            }
-        } 
+         
     }   
 }
