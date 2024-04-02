@@ -14,7 +14,7 @@ import java.util.*;
 
 @Service
 public class ClientDataService {
-    private final static Path CLIENT_DATA_FILE = Path.of("pseudo_scene", "src", "main",
+    private final static Path CLIENT_DATA_FILE = Path.of(".", "src", "main",
             "resources", "client_data", "client_data.json");
     private final Map<String, List<Shape>> clientData;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(Shape.class, new CustomShapeDeserializer()).create();
@@ -33,7 +33,7 @@ public class ClientDataService {
         clientData = data;
     }
 
-    public void deleteShape(String clientId, String shapeName) {
+    public synchronized void deleteShape(String clientId, String shapeName) {
         ShapeType shapeType = ShapeType.valueOf(shapeName.toUpperCase());
         System.out.println(shapeType);
         List<Shape> clientShapes = clientData.get(clientId);
@@ -47,7 +47,7 @@ public class ClientDataService {
         }
     }
 
-    public List<Shape> getShapes(String clientId) {
+    public synchronized List<Shape> getShapes(String clientId) {
         List<Shape> shapes = clientData.get(clientId);
         if (shapes == null) {
             return new ArrayList<>();
@@ -55,7 +55,7 @@ public class ClientDataService {
         return clientData.get(clientId);
     }
 
-    public void saveShape(String clientId, Shape shape) {
+    public synchronized void saveShape(String clientId, Shape shape) {
         List<Shape> clientShapes = clientData.get(clientId);
         if (clientShapes == null) {
             ArrayList<Shape> newArrayList = new ArrayList<>();
