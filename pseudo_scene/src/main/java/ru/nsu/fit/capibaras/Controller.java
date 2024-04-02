@@ -1,5 +1,8 @@
 package ru.nsu.fit.capibaras;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,29 +24,52 @@ public class Controller {
         this.clientDataService = clientDataService;
     }
 
-    @GetMapping("/shape/chosen/list/{clientId}")
-    public List<String> getChosenShape(@PathVariable String clientId){
+    @Operation(summary = "Get a list of set shapes' names")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Returns a list of shapes' names set by the client")
+    })
+    @GetMapping("/shape/chosen/names_list/{clientId}")
+    public List<String> getChosenShape(@PathVariable String clientId) {
         return clientDataService.getShapes(clientId)
                 .stream().map(shape -> shape.getShapeType().name().toLowerCase()).toList();
     }
-    @GetMapping("/shape/list/{clientId}")
+
+    @Operation(summary = "Get a list of set shapes")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Returns a list of shapes set by the client")
+    })
+    @GetMapping("/shape/chosen/shapes_list/{clientId}")
     public List<Shape> getShapeList(@PathVariable String clientId) {
         return clientDataService.getShapes(clientId);
     }
 
-    @GetMapping("/shape/list")
+    @Operation(summary = "Get a list of existing shapes")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Returns a list of existing shapes")
+    })
+    @GetMapping("/shape/shapes_list")
     public List<String> getShapeList() {
         return Arrays.stream(ShapeType.values())
                 .map(shapeType -> shapeType.name().toLowerCase()).toList();
     }
 
-
+    @Operation(summary = "Delete the specified shape from the set ones")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description =
+                            "Deleting a specified shape from those set by a specific user was successfully completed")
+    })
     @DeleteMapping("/shape/{shapeName}")
     public void deleteShape(@RequestParam(value = "client_id") String clientId, @PathVariable String shapeName) {
         System.out.println(shapeName);
         clientDataService.deleteShape(clientId, shapeName);
     }
 
+    @Operation(summary = "Add a new rectangle to the set ones")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "The rectangle was successfully added")
+    })
     @PostMapping("/shape/rectangle")
     public void postRectangle(@RequestParam(value = "client_id") String clientId,
                               @RequestParam(value = "side") double rectangleSide,
@@ -52,6 +78,11 @@ public class Controller {
         clientDataService.saveShape(clientId, rectangle);
     }
 
+    @Operation(summary = "Add a new triangle to the set ones")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "The triangle was successfully added")
+    })
     @PostMapping("/shape/triangle")
     public void postTriangle(@RequestParam(value = "client_id") String clientId,
                              @RequestParam(value = "first_side") double triangleFirstSide,
@@ -62,6 +93,11 @@ public class Controller {
         clientDataService.saveShape(clientId, triangle);
     }
 
+    @Operation(summary = "Add a new parallelogram to the set ones")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "The parallelogram was successfully added")
+    })
     @PostMapping("/shape/parallelogram")
     public void postParallelogram(@RequestParam(value = "client_id") String clientId,
                                   @RequestParam(value = "side") double parallelogramSide,
@@ -72,6 +108,11 @@ public class Controller {
         clientDataService.saveShape(clientId, parallelogram);
     }
 
+    @Operation(summary = "Add a new rhombus to the set ones")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "The rhombus was successfully added")
+    })
     @PostMapping("/shape/rhombus")
     public void postRhombus(@RequestParam(value = "client_id") String clientId,
                             @RequestParam(value = "side") double rhombusSide,
@@ -80,6 +121,11 @@ public class Controller {
         clientDataService.saveShape(clientId, rhombus);
     }
 
+    @Operation(summary = "Add a new circle to the set ones")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "The circle was successfully added")
+    })
     @PostMapping("/shape/circle")
     public void postCircle(@RequestParam(value = "client_id") String clientId,
                            @RequestParam(value = "radius") double circleRadius) throws ShapeCreatingException {
@@ -87,6 +133,11 @@ public class Controller {
         clientDataService.saveShape(clientId, circle);
     }
 
+    @Operation(summary = "Add a new ellipse to the set ones")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "The ellipse was successfully added")
+    })
     @PostMapping("/shape/ellipse")
     public void postEllipse(@RequestParam(value = "client_id") String clientId,
                             @RequestParam(value = "major_axis") double ellipseMajorAxis,
@@ -94,6 +145,12 @@ public class Controller {
         Ellipse ellipse = Ellipse.create(ellipseMajorAxis, ellipseMinorAxis);
         clientDataService.saveShape(clientId, ellipse);
     }
+
+    @Operation(summary = "Add a new square to the set ones")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "The square was successfully added")
+    })
 
     @PostMapping("/shape/square")
     public void postSquare(@RequestParam(value = "client_id") String clientId,
