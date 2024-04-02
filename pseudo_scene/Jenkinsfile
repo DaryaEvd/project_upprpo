@@ -12,13 +12,6 @@
 				 sh 'mvn -f pseudo_scene/pom.xml clean'
 			}
 			
-			post {
-                success {
-                    echo "Now Archiving the Artifacts....."
-                    archiveArtifacts artifacts: '**/*.jar'
-                }
-            }
-			
 		}
 		
 		stage("test") {
