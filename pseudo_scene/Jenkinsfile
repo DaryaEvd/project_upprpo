@@ -2,8 +2,8 @@
 	agent any
 
 	tools {
-		maven 'Maven 3.11.0'
-		jdk 'jdk19.0.2'
+		maven 'maven'
+		jdk 'java19'
 	}
 
 	stages {
