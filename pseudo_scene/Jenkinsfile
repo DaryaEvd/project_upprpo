@@ -19,14 +19,15 @@
 				 sh 'mvn -f pseudo_scene/pom.xml install'
 			}
 		}
-		 
-		post {
-			failure {
-			  // notify users when the Pipeline fails
-				mail to: 'dhfingerstyle@gmail.com',
-				subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-				body: "Something is wrong with ${env.BUILD_URL}"
-			}
+	}
+	
+	post {
+		failure {
+		  // notify users when the Pipeline fails
+			mail to: 'dhfingerstyle@gmail.com',
+			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+			body: "Something is wrong with ${env.BUILD_URL}"
 		}
-	}   
+	}
+	   
 }
