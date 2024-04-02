@@ -68,7 +68,8 @@ public class Controller {
     @Operation(summary = "Add a new rectangle to the set ones")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "The rectangle was successfully added")
+                    description = "The rectangle was successfully added"),
+            @ApiResponse(responseCode = "400", description = "Negative parameters were entered")
     })
     @PostMapping("/shape/rectangle")
     public void postRectangle(@RequestParam(value = "client_id") String clientId,
@@ -81,7 +82,9 @@ public class Controller {
     @Operation(summary = "Add a new triangle to the set ones")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "The triangle was successfully added")
+                    description = "The triangle was successfully added"),
+            @ApiResponse(responseCode = "400",
+                    description = "Negative parameters were entered or such triangle doesn't exist")
     })
     @PostMapping("/shape/triangle")
     public void postTriangle(@RequestParam(value = "client_id") String clientId,
@@ -96,7 +99,8 @@ public class Controller {
     @Operation(summary = "Add a new parallelogram to the set ones")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "The parallelogram was successfully added")
+                    description = "The parallelogram was successfully added"),
+            @ApiResponse(responseCode = "400", description = "Negative parameters were entered")
     })
     @PostMapping("/shape/parallelogram")
     public void postParallelogram(@RequestParam(value = "client_id") String clientId,
@@ -111,7 +115,8 @@ public class Controller {
     @Operation(summary = "Add a new rhombus to the set ones")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "The rhombus was successfully added")
+                    description = "The rhombus was successfully added"),
+            @ApiResponse(responseCode = "400", description = "Negative parameters were entered")
     })
     @PostMapping("/shape/rhombus")
     public void postRhombus(@RequestParam(value = "client_id") String clientId,
@@ -124,7 +129,8 @@ public class Controller {
     @Operation(summary = "Add a new circle to the set ones")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "The circle was successfully added")
+                    description = "The circle was successfully added"),
+            @ApiResponse(responseCode = "400", description = "Negative parameters were entered")
     })
     @PostMapping("/shape/circle")
     public void postCircle(@RequestParam(value = "client_id") String clientId,
@@ -136,7 +142,8 @@ public class Controller {
     @Operation(summary = "Add a new ellipse to the set ones")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "The ellipse was successfully added")
+                    description = "The ellipse was successfully added"),
+            @ApiResponse(responseCode = "400", description = "Negative parameters were entered")
     })
     @PostMapping("/shape/ellipse")
     public void postEllipse(@RequestParam(value = "client_id") String clientId,
@@ -149,7 +156,8 @@ public class Controller {
     @Operation(summary = "Add a new square to the set ones")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "The square was successfully added")
+                    description = "The square was successfully added"),
+            @ApiResponse(responseCode = "400", description = "Negative parameters were entered")
     })
 
     @PostMapping("/shape/square")
@@ -162,7 +170,7 @@ public class Controller {
     @ExceptionHandler(ShapeCreatingException.class)
     public ResponseEntity<ErrorMessage> handleException(ShapeCreatingException exception) {
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorMessage(exception.getMessage()));
     }
 }
