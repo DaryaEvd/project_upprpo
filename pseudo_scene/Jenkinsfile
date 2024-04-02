@@ -1,0 +1,37 @@
+ pipeline {
+	agent any
+
+	tools {
+		maven 'maven'
+		jdk 'java19'
+	}
+
+	stages {
+		stage("build") {
+			steps {
+				 sh 'mvn -f pseudo_scene/pom.xml clean'
+			}
+			
+			post {
+                success {
+                    echo "Now Archiving the Artifacts....."
+                    archiveArtifacts artifacts: '**/*.jar'
+                }
+            }
+			
+		}
+		
+		stage("test") {
+			steps {
+				 sh 'mvn -f pseudo_scene/pom.xml install'
+			}
+			
+			post {
+                always {
+                    junit 'pseudo_scene/target/surefire-reports/*.xml'
+                }
+            }
+		}
+		 
+	}   
+}
