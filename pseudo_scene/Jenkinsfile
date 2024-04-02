@@ -9,7 +9,7 @@
 	stages {
 		stage("build") {
 			steps {
-				 sh 'mvn pom.xml clean install'
+				 sh 'mvn -f pseudo_scene/pom.xml clean install'
 			}
 		}
 		 
