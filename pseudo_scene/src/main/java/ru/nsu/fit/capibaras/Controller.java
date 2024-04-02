@@ -1,9 +1,6 @@
 package ru.nsu.fit.capibaras;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.nsu.fit.capibaras.enums.ShapeType;
 import ru.nsu.fit.capibaras.shapes.*;
 
@@ -18,6 +15,12 @@ public class Controller {
     @GetMapping("/shape/list")
     public List<Shape> getShapeLists(@RequestParam(value = "client_id") String clientId) {
         return CLIENT_DATA_MANAGER.getShapes(clientId);
+    }
+
+    @DeleteMapping("/shape/{shapeName}")
+    public void deleteShape(@RequestParam(value = "client_id") String clientId, @PathVariable String shapeName) {
+        System.out.println(shapeName);
+        CLIENT_DATA_MANAGER.deleteShape(clientId, shapeName);
     }
 
     @PostMapping("/shape/list")

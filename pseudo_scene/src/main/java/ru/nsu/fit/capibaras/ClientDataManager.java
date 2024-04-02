@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Service;
+import ru.nsu.fit.capibaras.enums.ShapeType;
 import ru.nsu.fit.capibaras.shapes.Shape;
 
 import java.io.*;
@@ -31,6 +32,20 @@ public class ClientDataManager {
         clientData = data;
     }
 
+    public void deleteShape(String clientId, String shapeName) {
+        ShapeType shapeType = ShapeType.valueOf(shapeName.toUpperCase());
+        System.out.println(shapeType);
+        List<Shape> clientShapes = clientData.get(clientId);
+        if (clientShapes != null) {
+            clientShapes.removeIf(s -> s.getShapeType() == shapeType);
+        }
+        try (Writer writer = new FileWriter(CLIENT_DATA_FILE.toString())) {
+            gson.toJson(clientData, writer);
+        } catch (IOException e) {
+            //TODO
+        }
+    }
+
     public List<Shape> getShapes(String clientId) {
         List<Shape> shapes = clientData.get(clientId);
         if (shapes == null) {
@@ -46,6 +61,7 @@ public class ClientDataManager {
             newArrayList.add(shape);
             clientData.put(clientId, newArrayList);
         } else {
+            clientShapes.removeIf(s -> s.equals(shape));
             clientShapes.add(shape);
         }
         try (Writer writer = new FileWriter(CLIENT_DATA_FILE.toString())) {
