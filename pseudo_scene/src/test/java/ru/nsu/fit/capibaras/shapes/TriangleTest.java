@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.nsu.fit.capibaras.enums.ShapeType;
+import ru.nsu.fit.capibaras.exception.ShapeCreatingException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,7 +15,7 @@ public class TriangleTest {
     @Test
     public void testGetShapeType() throws ShapeCreatingException {
         Triangle triangle = Triangle.create(10., 10., 9.);
-        assertEquals(ShapeType.Triangle, triangle.getShapeType());
+        assertEquals(ShapeType.TRIANGLE, triangle.getShapeType());
     }
 
     @Test

@@ -2,6 +2,7 @@ package ru.nsu.fit.capibaras.shapes;
 
 import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
+import ru.nsu.fit.capibaras.exception.ShapeCreatingException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +17,7 @@ public final class Triangle extends Shape {
     private Double oppositeSecondSideAngleDegree;
     private Double oppositeThirdSideAngleDegree;
 
-    private Triangle(double firstSide, double secondSide, double thirdSide) {
+    public Triangle(double firstSide, double secondSide, double thirdSide) {
         this.firstSide = firstSide;
         this.secondSide = secondSide;
         this.thirdSide = thirdSide;
@@ -49,7 +50,7 @@ public final class Triangle extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Triangle;
+        return ShapeType.TRIANGLE;
     }
 
     @Override

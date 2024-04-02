@@ -13,7 +13,7 @@ public class RhombusTest {
     @Test
     public void testGetShapeType() {
         Rhombus rhombus = new Rhombus(10., 30.);
-        assertEquals(ShapeType.Rhombus, rhombus.getShapeType());
+        assertEquals(ShapeType.RHOMBUS, rhombus.getShapeType());
     }
 
     @ParameterizedTest

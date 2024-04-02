@@ -13,7 +13,7 @@ public class RectangleTest {
     @Test
     public void testGetShapeType() {
         Rectangle rectangle = new Rectangle(10., 10.);
-        assertEquals(ShapeType.Rectangle, rectangle.getShapeType());
+        assertEquals(ShapeType.RECTANGLE, rectangle.getShapeType());
     }
 
     @ParameterizedTest

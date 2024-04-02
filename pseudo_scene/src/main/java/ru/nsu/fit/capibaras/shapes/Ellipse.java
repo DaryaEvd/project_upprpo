@@ -2,6 +2,7 @@ package ru.nsu.fit.capibaras.shapes;
 
 import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
+import ru.nsu.fit.capibaras.exception.ShapeCreatingException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +12,7 @@ public final class Ellipse extends Shape {
     private Double majorAxis;
     private Double minorAxis;
 
-    private Ellipse(Double majorAxis, Double minorAxis) {
+    public Ellipse(Double majorAxis, Double minorAxis) {
         this.majorAxis = majorAxis;
         this.minorAxis = minorAxis;
     }
@@ -34,7 +35,7 @@ public final class Ellipse extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Ellipse;
+        return ShapeType.ELLIPSE;
     }
 
     @Override

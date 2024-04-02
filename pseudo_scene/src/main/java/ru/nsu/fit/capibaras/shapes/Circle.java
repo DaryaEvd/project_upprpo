@@ -2,6 +2,7 @@ package ru.nsu.fit.capibaras.shapes;
 
 import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
+import ru.nsu.fit.capibaras.exception.ShapeCreatingException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,7 +11,7 @@ import java.util.Collections;
 public final class Circle extends Shape {
     private Double radius;
 
-    private Circle(Double radius) {
+    public Circle(Double radius) {
         this.radius = radius;
     }
 
@@ -23,7 +24,7 @@ public final class Circle extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Circle;
+        return ShapeType.CIRCLE;
     }
 
     @Override

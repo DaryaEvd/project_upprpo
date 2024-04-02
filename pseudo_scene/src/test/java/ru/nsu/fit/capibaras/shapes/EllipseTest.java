@@ -13,7 +13,7 @@ public class EllipseTest {
     @Test
     public void testGetShapeType() {
         Ellipse ellipse = new Ellipse(10., 11.);
-        assertEquals(ShapeType.Ellipse, ellipse.getShapeType());
+        assertEquals(ShapeType.ELLIPSE, ellipse.getShapeType());
     }
 
     @ParameterizedTest

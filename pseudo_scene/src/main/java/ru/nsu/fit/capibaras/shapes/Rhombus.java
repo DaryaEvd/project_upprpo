@@ -2,6 +2,7 @@ package ru.nsu.fit.capibaras.shapes;
 
 import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
+import ru.nsu.fit.capibaras.exception.ShapeCreatingException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +12,7 @@ public final class Rhombus extends Shape {
     private Double side;
     private Double angle;
 
-    private Rhombus(Double side, Double angle) {
+    public Rhombus(Double side, Double angle) {
         this.side = side;
         this.angle = angle;
     }
@@ -25,7 +26,7 @@ public final class Rhombus extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Rhombus;
+        return ShapeType.RHOMBUS;
     }
 
     @Override

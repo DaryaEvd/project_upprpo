@@ -16,6 +16,19 @@ public sealed abstract class Shape permits Triangle, Circle, Ellipse, Rectangle,
                 new Characteristic("Perimeter", String.valueOf(getPerimeter())));
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Shape s) {
+            return s.getShapeType() == this.getShapeType();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getShapeType().hashCode();
+    }
+
     public abstract Double getArea();
 
     public abstract Double getPerimeter();

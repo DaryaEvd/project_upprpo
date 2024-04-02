@@ -2,6 +2,7 @@ package ru.nsu.fit.capibaras.shapes;
 
 import ru.nsu.fit.capibaras.dtos.Characteristic;
 import ru.nsu.fit.capibaras.enums.ShapeType;
+import ru.nsu.fit.capibaras.exception.ShapeCreatingException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +12,7 @@ public final class Rectangle extends Shape {
     private Double base;
     private Double side;
 
-    private Rectangle(Double base, Double side) {
+    public Rectangle(Double base, Double side) {
         this.base = base;
         this.side = side;
     }
@@ -25,7 +26,7 @@ public final class Rectangle extends Shape {
 
     @Override
     public ShapeType getShapeType() {
-        return ShapeType.Rectangle;
+        return ShapeType.RECTANGLE;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class CircleTest {
     @Test
     public void testGetShapeType() {
         Circle circle = new Circle(10.);
-        assertEquals(ShapeType.Circle, circle.getShapeType());
+        assertEquals(ShapeType.CIRCLE, circle.getShapeType());
     }
 
     @ParameterizedTest
