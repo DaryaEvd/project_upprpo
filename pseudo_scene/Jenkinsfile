@@ -18,12 +18,6 @@
 			steps {
 				 sh 'mvn -f pseudo_scene/pom.xml install'
 			}
-			
-			post {
-                always {
-                    junit 'pseudo_scene/target/surefire-reports/*.xml'
-                }
-            }
 		}
 		 
 	}   
