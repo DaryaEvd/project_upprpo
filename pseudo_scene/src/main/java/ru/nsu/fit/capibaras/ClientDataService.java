@@ -13,13 +13,13 @@ import java.nio.file.Path;
 import java.util.*;
 
 @Service
-public class ClientDataManager {
+public class ClientDataService {
     private final static Path CLIENT_DATA_FILE = Path.of("pseudo_scene", "src", "main",
             "resources", "client_data", "client_data.json");
     private final Map<String, List<Shape>> clientData;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(Shape.class, new CustomShapeDeserializer()).create();
 
-    public ClientDataManager() {
+    public ClientDataService() {
         Map<String, List<Shape>> data;
         try (Reader reader = new FileReader(CLIENT_DATA_FILE.toString())) {
             Type type = new TypeToken<Map<String, List<Shape>>>() {

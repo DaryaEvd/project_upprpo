@@ -1,89 +1,111 @@
 package ru.nsu.fit.capibaras;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.fit.capibaras.enums.ShapeType;
+import ru.nsu.fit.capibaras.exception.ShapeCreatingException;
 import ru.nsu.fit.capibaras.shapes.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static ru.nsu.fit.capibaras.Main.CLIENT_DATA_MANAGER;
-
 
 @RestController
+@RestControllerAdvice
 public class Controller {
-    @GetMapping("/shape/list")
-    public List<Shape> getShapeLists(@RequestParam(value = "client_id") String clientId) {
-        return CLIENT_DATA_MANAGER.getShapes(clientId);
+
+    private final ClientDataService clientDataService;
+
+    public Controller(ClientDataService clientDataService) {
+        this.clientDataService = clientDataService;
     }
+
+    @GetMapping("/shape/chosen/list/{clientId}")
+    public List<String> getChosenShape(@PathVariable String clientId){
+        return clientDataService.getShapes(clientId)
+                .stream().map(shape -> shape.getShapeType().name().toLowerCase()).toList();
+    }
+    @GetMapping("/shape/list/{clientId}")
+    public List<Shape> getShapeList(@PathVariable String clientId) {
+        return clientDataService.getShapes(clientId);
+    }
+
+    @GetMapping("/shape/list")
+    public List<String> getShapeList() {
+        return Arrays.stream(ShapeType.values())
+                .map(shapeType -> shapeType.name().toLowerCase()).toList();
+    }
+
 
     @DeleteMapping("/shape/{shapeName}")
     public void deleteShape(@RequestParam(value = "client_id") String clientId, @PathVariable String shapeName) {
         System.out.println(shapeName);
-        CLIENT_DATA_MANAGER.deleteShape(clientId, shapeName);
-    }
-
-    @PostMapping("/shape/list")
-    public List<String> getShapeLists() {
-        return Arrays.stream(ShapeType.values()).map(Enum::name).toList();
+        clientDataService.deleteShape(clientId, shapeName);
     }
 
     @PostMapping("/shape/rectangle")
-    public void getRectangle(@RequestParam(value = "client_id") String clientId,
-                             @RequestParam(value = "side") double rectangleSide,
-                             @RequestParam(value = "base") double rectangleBase) throws ShapeCreatingException {
+    public void postRectangle(@RequestParam(value = "client_id") String clientId,
+                              @RequestParam(value = "side") double rectangleSide,
+                              @RequestParam(value = "base") double rectangleBase) throws ShapeCreatingException {
         Rectangle rectangle = Rectangle.create(rectangleBase, rectangleSide);
-        CLIENT_DATA_MANAGER.saveShape(clientId, rectangle);
+        clientDataService.saveShape(clientId, rectangle);
     }
 
     @PostMapping("/shape/triangle")
-    public void getTriangle(@RequestParam(value = "client_id") String clientId,
-                            @RequestParam(value = "first_side") double triangleFirstSide,
-                            @RequestParam(value = "second_side") double triangleSecondSide,
-                            @RequestParam(value = "third_side") double triangleThirdSide)
+    public void postTriangle(@RequestParam(value = "client_id") String clientId,
+                             @RequestParam(value = "first_side") double triangleFirstSide,
+                             @RequestParam(value = "second_side") double triangleSecondSide,
+                             @RequestParam(value = "third_side") double triangleThirdSide)
             throws ShapeCreatingException {
         Triangle triangle = Triangle.create(triangleFirstSide, triangleSecondSide, triangleThirdSide);
-        CLIENT_DATA_MANAGER.saveShape(clientId, triangle);
+        clientDataService.saveShape(clientId, triangle);
     }
 
     @PostMapping("/shape/parallelogram")
-    public void getParallelogram(@RequestParam(value = "client_id") String clientId,
-                                 @RequestParam(value = "side") double parallelogramSide,
-                                 @RequestParam(value = "base") double parallelogramBase,
-                                 @RequestParam(value = "angle") double parallelogramAngle)
+    public void postParallelogram(@RequestParam(value = "client_id") String clientId,
+                                  @RequestParam(value = "side") double parallelogramSide,
+                                  @RequestParam(value = "base") double parallelogramBase,
+                                  @RequestParam(value = "angle") double parallelogramAngle)
             throws ShapeCreatingException {
         Parallelogram parallelogram = Parallelogram.create(parallelogramBase, parallelogramSide, parallelogramAngle);
-        CLIENT_DATA_MANAGER.saveShape(clientId, parallelogram);
+        clientDataService.saveShape(clientId, parallelogram);
     }
 
     @PostMapping("/shape/rhombus")
-    public void getRhombus(@RequestParam(value = "client_id") String clientId,
-                           @RequestParam(value = "side") double rhombusSide,
-                           @RequestParam(value = "angle") double rhombusAngle) throws ShapeCreatingException {
+    public void postRhombus(@RequestParam(value = "client_id") String clientId,
+                            @RequestParam(value = "side") double rhombusSide,
+                            @RequestParam(value = "angle") double rhombusAngle) throws ShapeCreatingException {
         Rhombus rhombus = Rhombus.create(rhombusSide, rhombusAngle);
-        CLIENT_DATA_MANAGER.saveShape(clientId, rhombus);
+        clientDataService.saveShape(clientId, rhombus);
     }
 
     @PostMapping("/shape/circle")
-    public void getCircle(@RequestParam(value = "client_id") String clientId,
-                          @RequestParam(value = "radius") double circleRadius) throws ShapeCreatingException {
+    public void postCircle(@RequestParam(value = "client_id") String clientId,
+                           @RequestParam(value = "radius") double circleRadius) throws ShapeCreatingException {
         Circle circle = Circle.create(circleRadius);
-        CLIENT_DATA_MANAGER.saveShape(clientId, circle);
+        clientDataService.saveShape(clientId, circle);
     }
 
     @PostMapping("/shape/ellipse")
-    public void getEllipse(@RequestParam(value = "client_id") String clientId,
-                           @RequestParam(value = "major_axis") double ellipseMajorAxis,
-                           @RequestParam(value = "minor_axis") double ellipseMinorAxis) throws ShapeCreatingException {
+    public void postEllipse(@RequestParam(value = "client_id") String clientId,
+                            @RequestParam(value = "major_axis") double ellipseMajorAxis,
+                            @RequestParam(value = "minor_axis") double ellipseMinorAxis) throws ShapeCreatingException {
         Ellipse ellipse = Ellipse.create(ellipseMajorAxis, ellipseMinorAxis);
-        CLIENT_DATA_MANAGER.saveShape(clientId, ellipse);
+        clientDataService.saveShape(clientId, ellipse);
     }
 
     @PostMapping("/shape/square")
-    public void getSquare(@RequestParam(value = "client_id") String clientId,
-                          @RequestParam(value = "side") double squareSide) throws ShapeCreatingException {
+    public void postSquare(@RequestParam(value = "client_id") String clientId,
+                           @RequestParam(value = "side") double squareSide) throws ShapeCreatingException {
         Square square = Square.create(squareSide);
-        CLIENT_DATA_MANAGER.saveShape(clientId, square);
+        clientDataService.saveShape(clientId, square);
     }
 
+    @ExceptionHandler(ShapeCreatingException.class)
+    public ResponseEntity<ErrorMessage> handleException(ShapeCreatingException exception) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new ErrorMessage(exception.getMessage()));
+    }
 }

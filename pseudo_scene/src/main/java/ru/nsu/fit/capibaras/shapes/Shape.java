@@ -18,7 +18,7 @@ public sealed abstract class Shape permits Triangle, Circle, Ellipse, Rectangle,
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Shape s){
+        if (obj instanceof Shape s) {
             return s.getShapeType() == this.getShapeType();
         }
         return false;
