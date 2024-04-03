@@ -1,0 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Righteous);
+
+.text-3d {
+    font-family: 'Righteous', sans-serif;
+    color: black;
+    text-shadow: .03em .03em 0 wheat;
+}
+
+.title-text {
+    font-size: 7em;
+    text-align: center;
+}
+
+.box-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.b-none {
+    border: none;
+}
+
+.scroll {
+    overflow: scroll;
+}
+
+.floating-button {
+    min-width: 250px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+    background: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .2);
+    transition: .3s;
+}
+
+.button-back{
+    background: lightgray;
+}
+
+.button-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #524f4e;
+
+    letter-spacing: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.floating-button:hover {
+    background: rgb(152, 151, 151);
+    box-shadow: 0 15px 20px wheat;
+    color: white;
+    transform: translateY(-7px);
+}
+
+.position-center {
+    margin-left: auto;
+    margin-right: auto;
+}

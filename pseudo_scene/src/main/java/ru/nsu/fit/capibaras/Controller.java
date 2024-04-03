@@ -13,7 +13,7 @@ import ru.nsu.fit.capibaras.shapes.*;
 import java.util.Arrays;
 import java.util.List;
 
-
+@CrossOrigin(origins = "http://localhost:5500")
 @RestController
 @RestControllerAdvice
 public class Controller {
