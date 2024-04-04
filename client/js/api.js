@@ -9,6 +9,14 @@ export const API = {
       })
       .catch((e) => alert("Getting error: " + e));
   },
+  sendRequestToGetShapesName: () => {
+    let clientId = getClientId();
+    return fetch(`http://localhost:8080/shape/chosen/names_list/${clientId}`, { method: "GET", })
+      .then((response) => {
+        return response.json();
+      })
+      .catch((e) => alert("Getting error: " + e));
+  },
   sendRequestToCreateCircle: async (params) => {
     let clientId = getClientId();
     try {

@@ -1,11 +1,13 @@
 import { API } from './api.js';
 import { drawShapes } from './draw.js';
 import { addEventDelete } from './delete.js'
+import { addShapeInfo } from './info.js';
 
 export {
   createShape,
   getAndDrawShapes,
   displayListOfShapesToDelete,
+  displayListOfShapesWithParams,
 }
 
 async function createShape(type) {
@@ -109,14 +111,16 @@ async function getAndDrawShapes() {
     totalWidth += shape.width + offset;
     maxHeight = shape.height > maxHeight ? shape.height : maxHeight;
   });
-  // Сортировка фигур по возрастанию вы соты
+  // Сортировка фигур по возрастанию высоты
   shapes.sort((a, b) => (a.height > b.height ? 1 : -1));
 
   drawShapes(shapes, maxHeight, totalWidth);
+
+  displayListOfShapesWithParams(shapes);
 }
 
 async function displayListOfShapesToDelete() {
-  const shapes = await API.sendRequestToGetShapes();
+  const shapes = await API.sendRequestToGetShapesName();
   const wrapper = document.querySelector('#wrapper');
   const backButton = wrapper.querySelector('#back');
 
@@ -128,8 +132,41 @@ async function displayListOfShapesToDelete() {
 async function outputShape(shape, wrapper, backButton) {
   let button = document.createElement('button');
   button.setAttribute('class', 'floating-button w-75 position-center button-text b-none');
-  button.textContent = `${shape.shapeType}`;
-  addEventDelete(wrapper, button, shape.shapeType);
+  button.textContent = `${shape}`;
+  addEventDelete(wrapper, button, shape);
 
   wrapper.insertBefore(button, backButton);
+}
+
+async function displayListOfShapesWithParams(shapes) {
+  const wrapper = document.querySelector('#wrapper');
+
+  shapes.forEach((shape, i) => {
+    displayShapeWithParams(shape, wrapper, i);
+  });
+}
+
+async function displayShapeWithParams(shape, wrapper, i) {
+  let button = createButtonI(i);
+
+  button.addEventListener('click', function () {
+    let info = document.getElementById(`info${i}`);
+    if (info) {
+      wrapper.removeChild(info);
+    } else {
+      info = addShapeInfo(shape, i);
+      const nextButton = document.getElementById(`button${i + 1}`);
+      wrapper.insertBefore(info, nextButton);
+    }
+  });
+
+  button.textContent = `${shape.shapeType}`;
+  wrapper.appendChild(button);
+}
+
+function createButtonI(i) {
+  let button = document.createElement('button');
+  button.setAttribute('class', 'floating-button w-75 position-center button-text b-none');
+  button.setAttribute('id', `button${i}`);
+  return button;
 }
