@@ -22,10 +22,10 @@ class CustomShapeDeserializer implements JsonDeserializer<Shape> {
             return getSquare(jsonObject);
         } else if (jsonObject.has("side") && jsonObject.has("angle")) {
             return getRhombus(jsonObject);
-        } else if (jsonObject.has("major_axis") && jsonObject.has("minor_axis")) {
+        } else if (jsonObject.has("majorAxis") && jsonObject.has("minorAxis")) {
             return getEllipse(jsonObject);
-        } else if (jsonObject.has("first_side") && jsonObject.has("second_side")
-                && jsonObject.has("third_side")) {
+        } else if (jsonObject.has("firstSide") && jsonObject.has("secondSide")
+                && jsonObject.has("thirdSide")) {
             return getTriangle(jsonObject);
         } else {
             throw new JsonParseException("Unknown shape type");
@@ -33,15 +33,15 @@ class CustomShapeDeserializer implements JsonDeserializer<Shape> {
     }
 
     private Triangle getTriangle(JsonObject jsonObject) {
-        double first_side = jsonObject.get("first_side").getAsDouble();
-        double second_side = jsonObject.get("second_side").getAsDouble();
-        double third_side = jsonObject.get("third_side").getAsDouble();
+        double first_side = jsonObject.get("firstSide").getAsDouble();
+        double second_side = jsonObject.get("secondSide").getAsDouble();
+        double third_side = jsonObject.get("thirdSide").getAsDouble();
         return new Triangle(first_side, second_side, third_side);
     }
 
     private Ellipse getEllipse(JsonObject jsonObject) {
-        double majorAxis = jsonObject.get("major_axis").getAsDouble();
-        double minorAxis = jsonObject.get("minor_axis").getAsDouble();
+        double majorAxis = jsonObject.get("majorAxis").getAsDouble();
+        double minorAxis = jsonObject.get("minorAxis").getAsDouble();
         return new Ellipse(majorAxis, minorAxis);
     }
 
