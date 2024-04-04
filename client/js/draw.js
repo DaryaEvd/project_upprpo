@@ -48,7 +48,7 @@ function drawEllipse(context, shape, x, y) {
     context.fillStyle = "rgba(220, 220, 80, 0.7)";
     // TODO что с линией в moveTo
     context.moveTo(x + shape.majorAxis, y + shape.minorAxis * 2 - 3);
-    context.ellipse(x + shape.majorAxis, y + shape.minorAxis, shape.majorAxis, shape.minorAxis, Math.PI / 2, 0, 2 * Math.PI);
+    context.ellipse(x + shape.majorAxis, y + shape.minorAxis, shape.minorAxis, shape.majorAxis, Math.PI / 2, 0, 2 * Math.PI);
     context.stroke();
     context.fill();
     context.closePath();
