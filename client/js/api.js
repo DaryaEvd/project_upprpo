@@ -114,4 +114,17 @@ export const API = {
       return alert(`Triangle creation error: ${e}`);
     }
   },
+  sendRequestToDeleteShape: async (shapeType) => {
+    let clientId = getClientId();
+    try {
+      await fetch(`http://localhost:8080/shape/${shapeType}?` + new URLSearchParams({
+        'client_id': clientId,
+      }), {
+        method: "DELETE",
+      });
+      alert(`The ${shapeType} has been successfully deleted!`);
+    } catch (e) {
+      return alert(`${shapeType} delete error: ${e}`);
+    }
+  },
 };

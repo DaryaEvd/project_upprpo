@@ -1,9 +1,11 @@
 import { API } from './api.js';
 import { drawShapes } from './draw.js';
+import { addEventDelete } from './delete.js'
 
 export {
   createShape,
   getAndDrawShapes,
+  displayListOfShapesToDelete,
 }
 
 async function createShape(type) {
@@ -111,4 +113,23 @@ async function getAndDrawShapes() {
   shapes.sort((a, b) => (a.height > b.height ? 1 : -1));
 
   drawShapes(shapes, maxHeight, totalWidth);
+}
+
+async function displayListOfShapesToDelete() {
+  const shapes = await API.sendRequestToGetShapes();
+  const wrapper = document.querySelector('#wrapper');
+  const backButton = wrapper.querySelector('#back');
+
+  shapes.forEach((shape) => {
+    outputShape(shape, wrapper, backButton);
+  });
+}
+
+async function outputShape(shape, wrapper, backButton) {
+  let button = document.createElement('button');
+  button.setAttribute('class', 'floating-button w-75 position-center button-text b-none');
+  button.textContent = `${shape.shapeType}`;
+  addEventDelete(wrapper, button, shape.shapeType);
+
+  wrapper.insertBefore(button, backButton);
 }

@@ -18,9 +18,7 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
     <script type="module" src="./js/shape.js"></script>
-    <!-- <script src="./js/shape.js"></script> -->
     <script type="module">
-        // https://stackoverflow.com/questions/69888029/how-to-call-a-function-declared-in-a-javascript-module-type-module-from-an-htm
         import { getAndDrawShapes } from "./js/shape.js";
         window.getAndDrawShapes = getAndDrawShapes;
     </script>
@@ -35,7 +33,7 @@
         </div>
 
         <div class="d-flex flex-1 m-3">
-            <a href="./actions.html" class="floating-button w-75 position-center button-text">Go to available
+            <a href="./actions.html" class="floating-button w-75 position-center button-text button-back">Go to available
                 actions</a>
         </div>
     </div>
