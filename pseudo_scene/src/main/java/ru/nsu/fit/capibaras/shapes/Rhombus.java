@@ -21,6 +21,9 @@ public final class Rhombus extends Shape {
         if (side < 0 || angle < 0) {
             throw ShapeCreatingException.negativeParameterValue();
         }
+        if (angle <= 0 || angle >= 180) {
+            throw ShapeCreatingException.wrongAngleValue();
+        }
         return new Rhombus(side, angle);
     }
 
