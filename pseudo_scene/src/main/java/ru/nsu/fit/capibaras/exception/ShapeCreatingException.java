@@ -16,4 +16,8 @@ public class ShapeCreatingException extends Exception {
     public static ShapeCreatingException negativeParameterValue() {
         return new ShapeCreatingException("Can't create shape with negative parameters.");
     }
+
+    public static ShapeCreatingException wrongAngleValue() {
+        return new ShapeCreatingException("Wrong angle value. Possible values are from 0 to 180 excluding.");
+    }
 }

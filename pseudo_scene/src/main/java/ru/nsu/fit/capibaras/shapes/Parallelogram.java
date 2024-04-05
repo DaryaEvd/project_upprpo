@@ -23,6 +23,9 @@ public final class Parallelogram extends Shape {
         if (base < 0 || side < 0 || angle < 0) {
             throw ShapeCreatingException.negativeParameterValue();
         }
+        if (angle <= 0 || angle >= 180) {
+            throw ShapeCreatingException.wrongAngleValue();
+        }
         return new Parallelogram(base, side, angle);
     }
 

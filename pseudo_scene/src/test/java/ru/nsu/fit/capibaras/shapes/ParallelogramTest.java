@@ -26,6 +26,14 @@ public class ParallelogramTest {
         assertEquals("Can't create shape with negative parameters.", thrown.getMessage());
     }
 
+    @Test
+    public void testWrongAngleParameters() {
+        Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
+                Parallelogram.create(5., 9.,990.));
+
+        assertEquals("Wrong angle value. Possible values are from 0 to 180 excluding.", thrown.getMessage());
+    }
+
     @ParameterizedTest
     @CsvSource(
             {"10.,3.,30.,15.", "20.,1.,20.,6.84", "15.,15.,22.5,86.104", "30.,1.5,45.,31.82", "35.,2.,70.78,66.098"}

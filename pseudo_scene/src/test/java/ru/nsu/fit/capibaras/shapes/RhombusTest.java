@@ -26,6 +26,14 @@ public class RhombusTest {
         assertEquals("Can't create shape with negative parameters.", thrown.getMessage());
     }
 
+    @Test
+    public void testWrongAngleParameters() {
+        Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
+                Rhombus.create(5., 990.));
+
+        assertEquals("Wrong angle value. Possible values are from 0 to 180 excluding.", thrown.getMessage());
+    }
+
     @ParameterizedTest
     @CsvSource(
             {"10.,30.,50.", "20.,20.,136.808", "15.,22.5,86.104", "30.,45.,636.396", "3.5,70.78,11.567"}
