@@ -26,6 +26,14 @@ public class TriangleTest {
         assertEquals("Triangle with parameters: 10, 10, 20 doesn't exist", thrown.getMessage());
     }
 
+    @Test
+    public void testNegativeParameters() {
+        Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
+                Triangle.create(-5., -7., 90.));
+
+        assertEquals("Can't create shape with negative parameters.", thrown.getMessage());
+    }
+
     @ParameterizedTest
     @CsvSource(
             {"10.,3.,10.,23.", "20.,1.,20.5,41.5", "15.,15.,2.1,32.1", "30.,1.5,29.,60.5", "9.,2.,10.,21.", "3.5,1.2,3.,7.7"}
