@@ -48,7 +48,7 @@ public class Controller {
             @ApiResponse(responseCode = "200", description = "Returns a list of existing shapes")
     })
     @GetMapping("/shape/shapes_list")
-    public List<String> getShapeList() {
+    public List<String> getShapesNamesList() {
         return Arrays.stream(ShapeType.values())
                 .map(shapeType -> shapeType.name().toLowerCase()).toList();
     }
