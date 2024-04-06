@@ -13,6 +13,10 @@ public class ShapeCreatingException extends Exception {
                 df.format(firstSide), df.format(secondSide), df.format(thirdSide)));
     }
 
+    public static ShapeCreatingException nonNumericParameterValue() {
+        return new ShapeCreatingException("It's impossible to create shape with a non-numeric parameter value.");
+    }
+
     public static ShapeCreatingException negativeParameterValue() {
         return new ShapeCreatingException("Can't create shape with negative parameters.");
     }

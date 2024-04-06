@@ -73,10 +73,16 @@ public class Controller {
     })
     @PostMapping("/shape/rectangle")
     public void postRectangle(@RequestParam(value = "client_id") String clientId,
-                              @RequestParam(value = "side") double rectangleSide,
-                              @RequestParam(value = "base") double rectangleBase) throws ShapeCreatingException {
-        Rectangle rectangle = Rectangle.create(rectangleBase, rectangleSide);
-        clientDataService.saveShape(clientId, rectangle);
+                              @RequestParam(value = "side") String rectangleSide,
+                              @RequestParam(value = "base") String rectangleBase) throws ShapeCreatingException {
+        try {
+            double base = Double.parseDouble(rectangleBase);
+            double side = Double.parseDouble(rectangleSide);
+            Rectangle rectangle = Rectangle.create(base, side);
+            clientDataService.saveShape(clientId, rectangle);
+        } catch (NumberFormatException e) {
+            throw ShapeCreatingException.nonNumericParameterValue();
+        }
     }
 
     @Operation(summary = "Add a new triangle to the set ones")
@@ -88,12 +94,19 @@ public class Controller {
     })
     @PostMapping("/shape/triangle")
     public void postTriangle(@RequestParam(value = "client_id") String clientId,
-                             @RequestParam(value = "first_side") double triangleFirstSide,
-                             @RequestParam(value = "second_side") double triangleSecondSide,
-                             @RequestParam(value = "third_side") double triangleThirdSide)
+                             @RequestParam(value = "first_side") String triangleFirstSide,
+                             @RequestParam(value = "second_side") String triangleSecondSide,
+                             @RequestParam(value = "third_side") String triangleThirdSide)
             throws ShapeCreatingException {
-        Triangle triangle = Triangle.create(triangleFirstSide, triangleSecondSide, triangleThirdSide);
-        clientDataService.saveShape(clientId, triangle);
+        try {
+            double firstSide = Double.parseDouble(triangleFirstSide);
+            double secondSide = Double.parseDouble(triangleSecondSide);
+            double thirdSide = Double.parseDouble(triangleThirdSide);
+            Triangle triangle = Triangle.create(firstSide, secondSide, thirdSide);
+            clientDataService.saveShape(clientId, triangle);
+        } catch (NumberFormatException e) {
+            throw ShapeCreatingException.nonNumericParameterValue();
+        }
     }
 
     @Operation(summary = "Add a new parallelogram to the set ones")
@@ -104,12 +117,19 @@ public class Controller {
     })
     @PostMapping("/shape/parallelogram")
     public void postParallelogram(@RequestParam(value = "client_id") String clientId,
-                                  @RequestParam(value = "side") double parallelogramSide,
-                                  @RequestParam(value = "base") double parallelogramBase,
-                                  @RequestParam(value = "angle") double parallelogramAngle)
+                                  @RequestParam(value = "side") String parallelogramSide,
+                                  @RequestParam(value = "base") String parallelogramBase,
+                                  @RequestParam(value = "angle") String parallelogramAngle)
             throws ShapeCreatingException {
-        Parallelogram parallelogram = Parallelogram.create(parallelogramBase, parallelogramSide, parallelogramAngle);
-        clientDataService.saveShape(clientId, parallelogram);
+        try {
+            double base = Double.parseDouble(parallelogramBase);
+            double side = Double.parseDouble(parallelogramSide);
+            double angle = Double.parseDouble(parallelogramAngle);
+            Parallelogram parallelogram = Parallelogram.create(base, side, angle);
+            clientDataService.saveShape(clientId, parallelogram);
+        } catch (NumberFormatException e) {
+            throw ShapeCreatingException.nonNumericParameterValue();
+        }
     }
 
     @Operation(summary = "Add a new rhombus to the set ones")
@@ -120,10 +140,16 @@ public class Controller {
     })
     @PostMapping("/shape/rhombus")
     public void postRhombus(@RequestParam(value = "client_id") String clientId,
-                            @RequestParam(value = "side") double rhombusSide,
-                            @RequestParam(value = "angle") double rhombusAngle) throws ShapeCreatingException {
-        Rhombus rhombus = Rhombus.create(rhombusSide, rhombusAngle);
-        clientDataService.saveShape(clientId, rhombus);
+                            @RequestParam(value = "side") String rhombusSide,
+                            @RequestParam(value = "angle") String rhombusAngle) throws ShapeCreatingException {
+        try {
+            double side = Double.parseDouble(rhombusSide);
+            double angle = Double.parseDouble(rhombusAngle);
+            Rhombus rhombus = Rhombus.create(side, angle);
+            clientDataService.saveShape(clientId, rhombus);
+        } catch (NumberFormatException e) {
+            throw ShapeCreatingException.nonNumericParameterValue();
+        }
     }
 
     @Operation(summary = "Add a new circle to the set ones")
@@ -134,9 +160,14 @@ public class Controller {
     })
     @PostMapping("/shape/circle")
     public void postCircle(@RequestParam(value = "client_id") String clientId,
-                           @RequestParam(value = "radius") double circleRadius) throws ShapeCreatingException {
-        Circle circle = Circle.create(circleRadius);
-        clientDataService.saveShape(clientId, circle);
+                           @RequestParam(value = "radius") String circleRadius) throws ShapeCreatingException {
+        try {
+            double radius = Double.parseDouble(circleRadius);
+            Circle circle = Circle.create(radius);
+            clientDataService.saveShape(clientId, circle);
+        } catch (NumberFormatException e) {
+            throw ShapeCreatingException.nonNumericParameterValue();
+        }
     }
 
     @Operation(summary = "Add a new ellipse to the set ones")
@@ -147,10 +178,16 @@ public class Controller {
     })
     @PostMapping("/shape/ellipse")
     public void postEllipse(@RequestParam(value = "client_id") String clientId,
-                            @RequestParam(value = "major_axis") double ellipseMajorAxis,
-                            @RequestParam(value = "minor_axis") double ellipseMinorAxis) throws ShapeCreatingException {
-        Ellipse ellipse = Ellipse.create(ellipseMajorAxis, ellipseMinorAxis);
-        clientDataService.saveShape(clientId, ellipse);
+                            @RequestParam(value = "major_axis") String ellipseMajorAxis,
+                            @RequestParam(value = "minor_axis") String ellipseMinorAxis) throws ShapeCreatingException {
+        try {
+            double majorAxis = Double.parseDouble(ellipseMajorAxis);
+            double minorAxis = Double.parseDouble(ellipseMinorAxis);
+            Ellipse ellipse = Ellipse.create(majorAxis, minorAxis);
+            clientDataService.saveShape(clientId, ellipse);
+        } catch (NumberFormatException e) {
+            throw ShapeCreatingException.nonNumericParameterValue();
+        }
     }
 
     @Operation(summary = "Add a new square to the set ones")
@@ -162,9 +199,14 @@ public class Controller {
 
     @PostMapping("/shape/square")
     public void postSquare(@RequestParam(value = "client_id") String clientId,
-                           @RequestParam(value = "side") double squareSide) throws ShapeCreatingException {
-        Square square = Square.create(squareSide);
-        clientDataService.saveShape(clientId, square);
+                           @RequestParam(value = "side") String squareSide) throws ShapeCreatingException {
+        try {
+            double side = Double.parseDouble(squareSide);
+            Square square = Square.create(side);
+            clientDataService.saveShape(clientId, square);
+        } catch (NumberFormatException e) {
+            throw ShapeCreatingException.nonNumericParameterValue();
+        }
     }
 
     @ExceptionHandler(ShapeCreatingException.class)
