@@ -19,7 +19,6 @@ class ControllerTest {
     private final static String NON_NUMERIC_VALE = "sad";
     @Mock
     ClientDataService clientDataService;
-
     @InjectMocks
     Controller controller;
 
