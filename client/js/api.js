@@ -3,7 +3,7 @@ import { getClientId } from './utils.js';
 export const API = {
   sendRequestToGetShapes: () => {
     let clientId = getClientId();
-    return fetch(`http://localhost:8080/shape/chosen/shapes_list/${clientId}`, { method: "GET", })
+    return fetch(`http://109.71.242.166:8080/shape/chosen/shapes_list/${clientId}`, { method: "GET", })
       .then((response) => {
         return response.json();
       })
@@ -11,7 +11,7 @@ export const API = {
   },
   sendRequestToGetShapesName: () => {
     let clientId = getClientId();
-    return fetch(`http://localhost:8080/shape/chosen/names_list/${clientId}`, { method: "GET", })
+    return fetch(`http://109.71.242.166:8080/shape/chosen/names_list/${clientId}`, { method: "GET", })
       .then((response) => {
         return response.json();
       })
@@ -20,7 +20,7 @@ export const API = {
   sendRequestToCreateCircle: async (params) => {
     let clientId = getClientId();
     try {
-      await fetch(`http://localhost:8080/shape/circle?` + new URLSearchParams({
+      await fetch(`http://109.71.242.166:8080/shape/circle?` + new URLSearchParams({
         'client_id': clientId,
         'radius': params.radius,
       }), {
@@ -34,7 +34,7 @@ export const API = {
   sendRequestToCreateEllipse: async (params) => {
     let clientId = getClientId();
     try {
-      await fetch(`http://localhost:8080/shape/ellipse?` + new URLSearchParams({
+      await fetch(`http://109.71.242.166:8080/shape/ellipse?` + new URLSearchParams({
         'client_id': clientId,
         'major_axis': params.major_axis,
         'minor_axis': params.minor_axis,
@@ -49,7 +49,7 @@ export const API = {
   sendRequestToCreateSquare: async (params) => {
     let clientId = getClientId();
     try {
-      await fetch(`http://localhost:8080/shape/square?` + new URLSearchParams({
+      await fetch(`http://109.71.242.166:8080/shape/square?` + new URLSearchParams({
         'client_id': clientId,
         'side': params.side,
       }), {
@@ -63,7 +63,7 @@ export const API = {
   sendRequestToCreateRectangle: async (params) => {
     let clientId = getClientId();
     try {
-      await fetch(`http://localhost:8080/shape/rectangle?` + new URLSearchParams({
+      await fetch(`http://109.71.242.166:8080/shape/rectangle?` + new URLSearchParams({
         'client_id': clientId,
         'side': params.side,
         'base': params.base,
@@ -78,7 +78,7 @@ export const API = {
   sendRequestToCreateParallelogram: async (params) => {
     let clientId = getClientId();
     try {
-      await fetch(`http://localhost:8080/shape/parallelogram?` + new URLSearchParams({
+      await fetch(`http://109.71.242.166:8080/shape/parallelogram?` + new URLSearchParams({
         'client_id': clientId,
         'side': params.side,
         'base': params.base,
@@ -94,7 +94,7 @@ export const API = {
   sendRequestToCreateRhombus: async (params) => {
     let clientId = getClientId();
     try {
-      await fetch(`http://localhost:8080/shape/rhombus?` + new URLSearchParams({
+      await fetch(`http://109.71.242.166:8080/shape/rhombus?` + new URLSearchParams({
         'client_id': clientId,
         'side': params.side,
         'angle': params.angle,
@@ -109,7 +109,7 @@ export const API = {
   sendRequestToCreateTriangle: async (params) => {
     let clientId = getClientId();
     try {
-      await fetch(`http://localhost:8080/shape/triangle?` + new URLSearchParams({
+      await fetch(`http://109.71.242.166:8080/shape/triangle?` + new URLSearchParams({
         'client_id': clientId,
         'first_side': params.first_side,
         'second_side': params.second_side,
@@ -125,7 +125,7 @@ export const API = {
   sendRequestToDeleteShape: async (shapeType) => {
     let clientId = getClientId();
     try {
-      await fetch(`http://localhost:8080/shape/${shapeType}?` + new URLSearchParams({
+      await fetch(`http://109.71.242.166:8080/shape/${shapeType}?` + new URLSearchParams({
         'client_id': clientId,
       }), {
         method: "DELETE",
