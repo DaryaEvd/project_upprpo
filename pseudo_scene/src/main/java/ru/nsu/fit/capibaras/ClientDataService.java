@@ -9,15 +9,26 @@ import ru.nsu.fit.capibaras.shapes.Shape;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.*;
 
 @Service
 public class ClientDataService {
-    private final static Path CLIENT_DATA_FILE = Path.of(".", "src", "main",
-            "resources", "client_data", "client_data.json");
+    private final static Path CLIENT_DATA_FILE;
+
+    static {
+        try {
+            CLIENT_DATA_FILE = Path.of(ClassLoader
+                    .getSystemResource(Path.of(".", "client_data", "client_data.json").toString()).toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private final Map<String, List<Shape>> clientData;
-    private final Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(Shape.class, new CustomShapeDeserializer()).create();
+    private final Gson gson = new GsonBuilder().setPrettyPrinting()
+            .registerTypeAdapter(Shape.class, new CustomShapeDeserializer()).create();
 
     public ClientDataService() {
         Map<String, List<Shape>> data;
