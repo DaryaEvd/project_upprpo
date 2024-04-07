@@ -132,7 +132,8 @@ export const API = {
       });
       alert(`The ${shapeType} has been successfully deleted!`);
     } catch (e) {
-      return alert(`${shapeType} delete error: ${e}`);
+      alert(`${shapeType} delete error: ${e}`);
+      throw e;
     }
   },
 };

@@ -34,7 +34,14 @@ function rectangleInfo(shape) {
 }
 
 function parallelogramInfo(shape) {
-    return `Side: ${shape.side}\nBase: ${shape.base}\nAngle: ${shape.angle}\nArea: ${shape.area.toFixed(2)}\nPerimeter: ${shape.perimeter.toFixed(2)}`;
+    const area = shape.area.toFixed(2);
+    return [
+        `Side: ${shape.side}`,
+        `Base: ${shape.base}`,
+        `Angle: ${shape.angle}`,
+        `Area: ${area}`,
+        `Perimeter: ${shape.perimeter.toFixed(2)}`
+    ].join('\n');
 }
 
 function rhombusInfo(shape) {

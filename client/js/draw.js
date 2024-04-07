@@ -23,13 +23,16 @@ export function drawShapes(shapes, maxH, totalW) {
 }
 
 function drawShape(context, shape, x, y) {
-    if (shape.shapeType == "CIRCLE") drawCircle(context, shape, x, y);
-    else if (shape.shapeType == 'ELLIPSE') drawEllipse(context, shape, x, y);
-    else if (shape.shapeType == 'SQUARE') drawSquare(context, shape, x, y);
-    else if (shape.shapeType == 'RECTANGLE') drawRectangle(context, shape, x, y);
-    else if (shape.shapeType == 'PARALLELOGRAM') drawParallelogram(context, shape, x, y);
-    else if (shape.shapeType == 'RHOMBUS') drawRhombus(context, shape, x, y);
-    else if (shape.shapeType == 'TRIANGLE') drawTriangle(context, shape, x, y);
+    const hj = {
+        CIRCLE: drawCircle,
+        ELLIPSE: drawEllipse,
+        SQUARE: drawSquare,
+        RECTANGLE: drawRectangle,
+        PARALLELOGRAM: drawParallelogram,
+        RHOMBUS: drawRhombus,
+        TRIANGLE: drawTriangle,
+    };
+    hj[shape.shapeType](context, shape, x, y);
 }
 
 function drawCircle(context, shape, x, y) {
@@ -107,7 +110,7 @@ function drawRhombus(context, shape, x, y) {
 }
 
 function drawTriangle(context, shape, x, y) {
-    let shift = Math.sqrt(Math.pow(shape.firstSide, 2) - Math.pow(shape.height, 2));
+    const shift = Math.sqrt(Math.pow(shape.firstSide, 2) - Math.pow(shape.height, 2));
 
     context.beginPath();
     context.strokeStyle = "violet";

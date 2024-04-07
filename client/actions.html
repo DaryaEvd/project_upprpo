@@ -19,14 +19,14 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body>
-    <div class="d-flex flex-column bg-light overflow-y-scroll" style="height: 100vh;">
-        <div class="flex-1 box-center text-3d title-text">Choose one of the actions:</div>
-        <div class="d-flex flex-1 flex-column gap-4">
-            <a href="./shapes.html" class="floating-button w-75 position-center button-text">Set shape</a>
-            <a href="./delete.html" class="floating-button w-75 position-center button-text">Delete shape</a>
-            <a href="./show.html" class="floating-button w-75 position-center button-text">Show screen</a>
-            <a href="./index.html" class="floating-button w-75 position-center button-text">Go back to the main page</a>
+<body class="bg-light min-vh-100">
+    <div class="d-flex flex-column min-vh-100">
+        <div class="text-3d title-text">Choose one of the actions:</div>
+        <div class="flex-1 d-flex flex-column align-items-center justify-content-center gap-4 m-3">
+            <a href="./shapes.html" class="d-block w-75 floating-button button-text">Set shape</a>
+            <a href="./delete.html" class="d-block w-75 floating-button button-text">Delete shape</a>
+            <a href="./show.html" class="d-block w-75 floating-button button-text">Show screen</a>
+            <a href="./index.html" class="d-block w-75 floating-button button-text">Go back to the main page</a>
         </div>
     </div>
 </body>

@@ -131,7 +131,7 @@ async function displayListOfShapesToDelete() {
 
 async function outputShape(shape, wrapper, backButton) {
   let button = document.createElement('button');
-  button.setAttribute('class', 'floating-button w-75 position-center button-text b-none');
+  button.setAttribute('class', 'd-block w-75 floating-button button-text b-none');
   button.textContent = `${shape}`;
   addEventDelete(wrapper, button, shape);
 
@@ -147,7 +147,7 @@ async function displayListOfShapesWithParams(shapes) {
 }
 
 async function displayShapeWithParams(shape, wrapper, i) {
-  let button = createButtonI(i);
+  let button = createButton(i);
 
   button.addEventListener('click', function () {
     let info = document.getElementById(`info${i}`);
@@ -164,9 +164,9 @@ async function displayShapeWithParams(shape, wrapper, i) {
   wrapper.appendChild(button);
 }
 
-function createButtonI(i) {
+function createButton(i) {
   let button = document.createElement('button');
-  button.setAttribute('class', 'floating-button w-75 position-center button-text b-none');
+  button.setAttribute('class', 'd-block w-75 floating-button button-text b-none');
   button.setAttribute('id', `button${i}`);
   return button;
 }

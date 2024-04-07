@@ -18,26 +18,24 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
     <script type="module" src="./js/shape.js"></script>
-    <!-- <script src="./js/shape.js"></script> -->
     <script type="module">
-        // https://stackoverflow.com/questions/69888029/how-to-call-a-function-declared-in-a-javascript-module-type-module-from-an-htm
         import { createShape } from "./js/shape.js";
         window.createShape = createShape;
     </script>
 </head>
 
-<body>
-    <div class="d-flex flex-column bg-light overflow-y-scroll" style="height: 100vh;">
-        <div class="flex-1 box-center text-3d title-text">Choose one of the shapes:</div>
-        <div class="d-flex flex-2 flex-column gap-3">
-            <button class="floating-button w-75 position-center button-text b-none" onclick="createShape('circle')">Circle</button>
-            <button class="floating-button w-75 position-center button-text b-none" onclick="createShape('ellipse')">Ellipse</button>
-            <button class="floating-button w-75 position-center button-text b-none" onclick="createShape('parallelogram')">Parallelogram</button>
-            <button class="floating-button w-75 position-center button-text b-none" onclick="createShape('rectangle')">Rectangle</button>
-            <button class="floating-button w-75 position-center button-text b-none" onclick="createShape('rhombus')">Rhombus</button>
-            <button class="floating-button w-75 position-center button-text b-none" onclick="createShape('square')">Square</button>
-            <button class="floating-button w-75 position-center button-text b-none" onclick="createShape('triangle')">Triangle</button>
-            <a href="./actions.html" class="button-back floating-button w-75 position-center button-text">Go back to choosing an action</a>
+<body class="bg-light min-vh-100">
+    <div class="d-flex flex-column min-vh-100">
+        <div class="text-3d title-text">Choose one of the shapes:</div>
+        <div class="flex-1 d-flex flex-column align-items-center justify-content-center gap-4 m-3">
+            <button class="d-block w-75 floating-button button-text b-none" onclick="createShape('circle')">Circle</button>
+            <button class="d-block w-75 floating-button button-text b-none" onclick="createShape('ellipse')">Ellipse</button>
+            <button class="d-block w-75 floating-button button-text b-none" onclick="createShape('parallelogram')">Parallelogram</button>
+            <button class="d-block w-75 floating-button button-text b-none" onclick="createShape('rectangle')">Rectangle</button>
+            <button class="d-block w-75 floating-button button-text b-none" onclick="createShape('rhombus')">Rhombus</button>
+            <button class="d-block w-75 floating-button button-text b-none" onclick="createShape('square')">Square</button>
+            <button class="d-block w-75 floating-button button-text b-none" onclick="createShape('triangle')">Triangle</button>
+            <a href="./actions.html" class="d-block w-75 floating-button button-text button-back">Go back to choosing an action</a>
         </div>
     </div>
 </body>
