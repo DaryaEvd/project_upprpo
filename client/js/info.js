@@ -81,7 +81,7 @@ function triangleInfo(shape) {
     return [
         `First side: ${firstSide}`,
         `Second side: ${secondSide}`,
-        `Third side: ${thirdSide}`
+        `Third side: ${thirdSide}`,
         `Area: ${area.toFixed(2)}`,
         `Perimeter: ${perimeter.toFixed(2)}`
     ].join('\n');

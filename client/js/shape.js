@@ -1,4 +1,4 @@
-import { API } from './api.js';
+import { API } from './apiShape.js';
 import { drawShapes } from './draw.js';
 import { addShapeInfo } from './info.js';
 

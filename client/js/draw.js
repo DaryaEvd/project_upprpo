@@ -23,7 +23,7 @@ export function drawShapes(canvasId, shapes, maxH, totalW) {
 }
 
 function drawShape(context, shape, x, y) {
-    const hj = {
+    const drawShape = {
         CIRCLE: drawCircle,
         ELLIPSE: drawEllipse,
         SQUARE: drawSquare,
@@ -32,7 +32,7 @@ function drawShape(context, shape, x, y) {
         RHOMBUS: drawRhombus,
         TRIANGLE: drawTriangle,
     };
-    hj[shape.shapeType](context, shape, x, y);
+    drawShape[shape.shapeType](context, shape, x, y);
 }
 
 function drawCircle(context, shape, x, y) {
@@ -76,7 +76,7 @@ function drawRectangle(context, shape, x, y) {
 }
 
 function drawParallelogram(context, shape, x, y) {
-    let shift = shape.side * Math.abs(Math.cos(shape.angle));
+    const shift = shape.side * Math.abs(Math.cos(shape.angle));
 
     context.beginPath();
     context.strokeStyle = "orange";
@@ -92,9 +92,9 @@ function drawParallelogram(context, shape, x, y) {
 }
 
 function drawRhombus(context, shape, x, y) {
-    let xShift = shape.side * Math.abs(Math.sin(shape.angle / 2));
-    let yShift = shape.side * Math.abs(Math.cos(shape.angle / 2));
-    let newX = x + (shape.width / 2);
+    const xShift = shape.side * Math.abs(Math.sin(shape.angle / 2));
+    const yShift = shape.side * Math.abs(Math.cos(shape.angle / 2));
+    const newX = x + (shape.width / 2);
 
     context.beginPath();
     context.strokeStyle = "lightblue";
