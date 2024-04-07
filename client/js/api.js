@@ -3,7 +3,7 @@ export async function getRequest(path) {
     .then((response) => {
       return response.json();
     })
-    .catch((e) => alert("Getting error: " + e));
+    .catch((e) => alert("Getting error: " + e.message));
 }
 
 export async function postRequest(path, params) {
