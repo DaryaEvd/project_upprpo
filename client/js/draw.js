@@ -1,6 +1,6 @@
 
-export function drawShapes(shapes, maxH, totalW) {
-    const canvas = document.getElementById("canvas");
+export function drawShapes(canvasId, shapes, maxH, totalW) {
+    const canvas = document.getElementById(canvasId);
     if (canvas.getContext) {
         const context = canvas.getContext("2d");
         

@@ -18,36 +18,71 @@ function shapeInfo(shape) {
 }
 
 function circleInfo(shape) {
-    return `Radius: ${shape.radius}\nArea: ${shape.area.toFixed(2)}\nPerimeter: ${shape.perimeter.toFixed(2)}`;
+    const { radius, area, perimeter } = shape;
+    return [
+        `Radius: ${radius}`,
+        `Area: ${area.toFixed(2)}`,
+        `Perimeter: ${perimeter.toFixed(2)}`
+    ].join('\n');
 }
 
 function ellipseInfo(shape) {
-    return `Major axis: ${shape.majorAxis}\nMinor axis: ${shape.minorAxis}\nArea: ${shape.area.toFixed(2)}\nPerimeter: ${shape.perimeter.toFixed(2)}`;
+    const { majorAxis, minorAxis, area, perimeter } = shape;
+    return [
+        `Major axis: ${majorAxis}`,
+        `Minor axis: ${minorAxis}`,
+        `Area: ${area.toFixed(2)}`,
+        `Perimeter: ${perimeter.toFixed(2)}`
+    ].join('\n');
 }
 
 function squareInfo(shape) {
-    return `Side: ${shape.side}\nArea: ${shape.area.toFixed(2)}\nPerimeter: ${shape.perimeter.toFixed(2)}`;
+    const { side, area, perimeter } = shape;
+    return [
+        `Side: ${side}`,
+        `Area: ${area.toFixed(2)}`,
+        `Perimeter: ${perimeter.toFixed(2)}`
+    ].join('\n');
 }
 
 function rectangleInfo(shape) {
-    return `Side: ${shape.side}\nBase: ${shape.base}\nArea: ${shape.area.toFixed(2)}\nPerimeter: ${shape.perimeter.toFixed(2)}`;
+    const { side, base, area, perimeter } = shape;
+    return [
+        `Side: ${side}`,
+        `Base: ${base}`,
+        `Area: ${area.toFixed(2)}`,
+        `Perimeter: ${perimeter.toFixed(2)}`
+    ].join('\n');
 }
 
 function parallelogramInfo(shape) {
-    const area = shape.area.toFixed(2);
+    const { side, base, angle, area, perimeter } = shape;
     return [
-        `Side: ${shape.side}`,
-        `Base: ${shape.base}`,
-        `Angle: ${shape.angle}`,
-        `Area: ${area}`,
-        `Perimeter: ${shape.perimeter.toFixed(2)}`
+        `Side: ${side}`,
+        `Base: ${base}`,
+        `Angle: ${angle}`,
+        `Area: ${area.toFixed(2)}`,
+        `Perimeter: ${perimeter.toFixed(2)}`
     ].join('\n');
 }
 
 function rhombusInfo(shape) {
-    return `Side: ${shape.side}\nAngle: ${shape.angle}\nArea: ${shape.area.toFixed(2)}\nPerimeter: ${shape.perimeter.toFixed(2)}`;
+    const { side, angle, area, perimeter } = shape;
+    return [
+        `Side: ${side}`,
+        `Angle: ${angle}`,
+        `Area: ${area.toFixed(2)}`,
+        `Perimeter: ${perimeter.toFixed(2)}`
+    ].join('\n');
 }
 
 function triangleInfo(shape) {
-    return `First side: ${shape.firstSide}\nSecond side: ${shape.secondSide}\nThird side: ${shape.thirdSide}\nArea: ${shape.area.toFixed(2)}\nPerimeter: ${shape.perimeter.toFixed(2)}`;
+    const { firstSide, secondSide, thirdSide, area, perimeter } = shape;
+    return [
+        `First side: ${firstSide}`,
+        `Second side: ${secondSide}`,
+        `Third side: ${thirdSide}`
+        `Area: ${area.toFixed(2)}`,
+        `Perimeter: ${perimeter.toFixed(2)}`
+    ].join('\n');
 }

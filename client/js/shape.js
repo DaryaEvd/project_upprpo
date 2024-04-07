@@ -1,6 +1,5 @@
 import { API } from './api.js';
 import { drawShapes } from './draw.js';
-import { addEventDelete } from './delete.js'
 import { addShapeInfo } from './info.js';
 
 export {
@@ -81,7 +80,7 @@ async function createTriangle() {
   });
 }
 
-async function getAndDrawShapes() {
+async function getAndDrawShapes(canvasId, wrapperId) {
   const shapes = await API.sendRequestToGetShapes();
 
   const offset = 10;
@@ -114,15 +113,15 @@ async function getAndDrawShapes() {
   // Сортировка фигур по возрастанию высоты
   shapes.sort((a, b) => (a.height > b.height ? 1 : -1));
 
-  drawShapes(shapes, maxHeight, totalWidth);
+  drawShapes(canvasId, shapes, maxHeight, totalWidth);
 
-  displayListOfShapesWithParams(shapes);
+  displayListOfShapesWithParams(wrapperId, shapes);
 }
 
-async function displayListOfShapesToDelete() {
+async function displayListOfShapesToDelete(wrapperId, backButtonId) {
   const shapes = await API.sendRequestToGetShapesName();
-  const wrapper = document.querySelector('#wrapper');
-  const backButton = wrapper.querySelector('#back');
+  const wrapper = document.getElementById(wrapperId);
+  const backButton = document.getElementById(backButtonId);
 
   shapes.forEach((shape) => {
     outputShape(shape, wrapper, backButton);
@@ -133,13 +132,16 @@ async function outputShape(shape, wrapper, backButton) {
   let button = document.createElement('button');
   button.setAttribute('class', 'd-block w-75 floating-button button-text b-none');
   button.textContent = `${shape}`;
-  addEventDelete(wrapper, button, shape);
+  button.addEventListener('click', async function () {
+    await API.sendRequestToDeleteShape(shape);
+    wrapper.removeChild(button);
+  })
 
   wrapper.insertBefore(button, backButton);
 }
 
-async function displayListOfShapesWithParams(shapes) {
-  const wrapper = document.querySelector('#wrapper');
+async function displayListOfShapesWithParams(wrapperId, shapes) {
+  const wrapper = document.getElementById(wrapperId);
 
   shapes.forEach((shape, i) => {
     displayShapeWithParams(shape, wrapper, i);
