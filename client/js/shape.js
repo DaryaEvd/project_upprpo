@@ -21,63 +21,87 @@ async function createShape(type) {
 
 async function createCircle() {
   const radius = prompt("Enter radius: ");
-  await API.sendRequestToCreateCircle({
-    radius: +radius,
-  });
+  if (isCorrect(radius)) {
+    await API.sendRequestToCreateCircle({
+      radius: +radius,
+    });
+  }
 }
 
 async function createEllipse() {
   const majorAxis = prompt("Enter major axis: ");
   const minorAxis = prompt("Enter minor axis: ");
-  await API.sendRequestToCreateEllipse({
-    major_axis: +majorAxis,
-    minor_axis: +minorAxis,
-  });
+  if (isCorrect(majorAxis, minorAxis)) {
+    await API.sendRequestToCreateEllipse({
+      major_axis: +majorAxis,
+      minor_axis: +minorAxis,
+    });
+  }
 }
 
 async function createSqure() {
   const squareSide = prompt("Enter side: ");
-  await API.sendRequestToCreateSquare({ side: +squareSide, });
+  if (isCorrect(squareSide)) {
+    await API.sendRequestToCreateSquare({ side: +squareSide, });
+  }
 }
 
 async function createRectangle() {
   const rectangleSide = prompt("Enter side: ");
   const rectangleBase = prompt("Enter base: ");
-  await API.sendRequestToCreateRectangle({
-    side: +rectangleSide,
-    base: +rectangleBase,
-  });
+  if (isCorrect(rectangleSide, rectangleBase)) {
+    await API.sendRequestToCreateRectangle({
+      side: +rectangleSide,
+      base: +rectangleBase,
+    });
+  }
 }
 
 async function createParallelogram() {
   const parallelogramSide = prompt("Enter side: ");
   const parallelogramBase = prompt("Enter base: ");
   const parallelogramAngle = prompt("Enter angle between side and base: ");
-  await API.sendRequestToCreateParallelogram({
-    side: +parallelogramSide,
-    base: +parallelogramBase,
-    angle: +parallelogramAngle,
-  });
+  if (isCorrect(parallelogramSide, parallelogramBase, parallelogramAngle)) {
+    await API.sendRequestToCreateParallelogram({
+      side: +parallelogramSide,
+      base: +parallelogramBase,
+      angle: +parallelogramAngle,
+    });
+  }
 }
 
 async function createRhombus() {
   const rhombusSide = prompt("Enter side: ");
   const rhombusAngle = prompt("Enter angle: ");
-  await API.sendRequestToCreateRhombus({
-    side: +rhombusSide,
-    angle: +rhombusAngle,
-  });
+  if (isCorrect(rhombusSide, rhombusAngle)) {
+    await API.sendRequestToCreateRhombus({
+      side: +rhombusSide,
+      angle: +rhombusAngle,
+    });
+  }
 }
 
 async function createTriangle() {
   const firstSide = prompt("Enter first side: ");
   const secondSide = prompt("Enter second side: ");
   const thirdSide = prompt("Enter third side: ");
-  await API.sendRequestToCreateTriangle({
-    first_side: +firstSide,
-    second_side: +secondSide,
-    third_side: +thirdSide,
-  });
+  if (isCorrect(firstSide, secondSide, thirdSide)) {
+    await API.sendRequestToCreateTriangle({
+      first_side: +firstSide,
+      second_side: +secondSide,
+      third_side: +thirdSide,
+    });
+  }
+}
+
+function isCorrect(...args) {
+  for (let arg of args) {
+    if (isNaN(arg) || arg === '') {
+      alert('Enter the correct number');
+      return 0;
+    }
+  }
+  return 1;
 }
 
 async function getAndDrawShapes(canvasId, wrapperId) {
