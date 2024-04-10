@@ -26,6 +26,14 @@ public class EllipseTest {
         assertEquals("Can't create shape with negative parameters.", thrown.getMessage());
     }
 
+    @Test
+    public void testZeroParameters() {
+        Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
+                Ellipse.create(0., 7.));
+
+        assertEquals("Can't create shape with zero parameters.", thrown.getMessage());
+    }
+
     @ParameterizedTest
     @CsvSource(
             {"10.,20.,628.319", "20.,22.,1382.301", "1.,1.,3.142", "30.,1.,94.248", "35.,6.,659.734", "1.5, 3.5,16.493"}

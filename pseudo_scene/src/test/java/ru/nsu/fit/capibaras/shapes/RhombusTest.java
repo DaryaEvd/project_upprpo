@@ -27,6 +27,14 @@ public class RhombusTest {
     }
 
     @Test
+    public void testZeroParameters() {
+        Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
+                Rhombus.create(0., 90.));
+
+        assertEquals("Can't create shape with zero parameters.", thrown.getMessage());
+    }
+
+    @Test
     public void testWrongAngleParameters() {
         Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
                 Rhombus.create(5., 990.));

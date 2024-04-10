@@ -35,6 +35,14 @@ public class RectangleTest {
         assertEquals("Can't create shape with negative parameters.", thrown.getMessage());
     }
 
+    @Test
+    public void testZeroParameters() {
+        Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
+                Rectangle.create(5., 0.));
+
+        assertEquals("Can't create shape with zero parameters.", thrown.getMessage());
+    }
+
     @ParameterizedTest
     @CsvSource(
             {"10.,3.,26.", "20.,1.,42.", "15.,15.,60.", "30.,1.5,63.", "35.,2.,74.", "3.5,1.2,9.4"}
