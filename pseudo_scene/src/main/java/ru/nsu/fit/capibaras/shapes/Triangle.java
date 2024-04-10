@@ -46,6 +46,9 @@ public final class Triangle extends Shape {
                 && secondSide + thirdSide > firstSide) {
             return new Triangle(firstSide, secondSide, thirdSide);
         }
+        if (firstSide == 0 || secondSide == 0 || thirdSide == 0) {
+            throw ShapeCreatingException.zeroParameterValue();
+        }
         throw ShapeCreatingException.notExistingTriangle(firstSide, secondSide, thirdSide);
     }
 

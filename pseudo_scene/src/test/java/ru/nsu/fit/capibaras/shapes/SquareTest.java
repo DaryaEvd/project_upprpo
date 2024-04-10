@@ -26,6 +26,14 @@ public class SquareTest {
         assertEquals("Can't create shape with negative parameters.", thrown.getMessage());
     }
 
+    @Test
+    public void testZeroParameters() {
+        Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
+                Square.create(0.));
+
+        assertEquals("Can't create shape with zero parameters.", thrown.getMessage());
+    }
+
     @ParameterizedTest
     @CsvSource(
             {"10.,100.", "20.,400.", "15.,225.", "1.5,2.25", "35.,1225.", "25.5,650.25"}
