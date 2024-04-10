@@ -21,6 +21,9 @@ public final class Ellipse extends Shape {
         if (minorAxis < 0 || majorAxis < 0) {
             throw ShapeCreatingException.negativeParameterValue();
         }
+        if (minorAxis == 0 || majorAxis == 0) {
+            throw ShapeCreatingException.zeroParameterValue();
+        }
         return new Ellipse(majorAxis, minorAxis);
     }
 

@@ -19,6 +19,9 @@ public final class Square extends Shape {
         if (side < 0) {
             throw ShapeCreatingException.negativeParameterValue();
         }
+        if (side == 0) {
+            throw ShapeCreatingException.zeroParameterValue();
+        }
         return new Square(side);
     }
 
