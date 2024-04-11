@@ -18,7 +18,6 @@ export async function postRequest(path, queryParams) {
     `http://109.71.242.166:8080/shape/${path}?` + searchParams,
     { method: "POST" }
   ).catch((e) => alert(`Error: ${e.message}`));
-  console.log("#", response);
   if (!response) {
     throw new Error();
   }
@@ -32,6 +31,7 @@ export async function postRequest(path, queryParams) {
 
 export async function deleteRequest(path) {
   const params = new URLSearchParams({'client_id': getClientId()})
-  await fetch(`http://109.71.242.166:8080/shape/${path}?` + params, { method: "DELETE", })
+  // await fetch(`http://109.71.242.166:8080/shape/${path}?` + params, { method: "DELETE", })
+  await fetch(`http://localhost:8080/shape/${path}?` + params, { method: "DELETE", })
     .catch((e) => alert("Getting error: " + e));
 }
