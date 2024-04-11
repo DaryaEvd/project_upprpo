@@ -19,6 +19,9 @@ public final class Circle extends Shape {
         if (radius < 0) {
             throw ShapeCreatingException.negativeParameterValue();
         }
+        if (radius == 0) {
+            throw ShapeCreatingException.zeroParameterValue();
+        }
         return new Circle(radius);
     }
 

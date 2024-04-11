@@ -26,6 +26,14 @@ public class CircleTest {
         assertEquals("Can't create shape with negative parameters.", thrown.getMessage());
     }
 
+    @Test
+    public void testZeroParameters() {
+        Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
+                Circle.create(0.));
+
+        assertEquals("Can't create shape with zero parameters.", thrown.getMessage());
+    }
+
     @ParameterizedTest
     @CsvSource(
             {"10.,314.159", "20.,1256.637", "1.,3.142", "30.,2827.433", "35.,3848.451", "1.5,7.069"}

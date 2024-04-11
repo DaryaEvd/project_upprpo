@@ -27,6 +27,14 @@ public class ParallelogramTest {
     }
 
     @Test
+    public void testZeroParameters() {
+        Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
+                Parallelogram.create(0., 7., 90.));
+
+        assertEquals("Can't create shape with zero parameters.", thrown.getMessage());
+    }
+
+    @Test
     public void testWrongAngleParameters() {
         Throwable thrown = assertThrows(ShapeCreatingException.class, () ->
                 Parallelogram.create(5., 9.,990.));

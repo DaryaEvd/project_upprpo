@@ -21,6 +21,9 @@ public final class Rectangle extends Shape {
         if (base < 0 || side < 0) {
             throw ShapeCreatingException.negativeParameterValue();
         }
+        if (base == 0 || side == 0) {
+            throw ShapeCreatingException.zeroParameterValue();
+        }
         return new Rectangle(base, side);
     }
 
