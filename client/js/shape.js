@@ -96,7 +96,7 @@ async function createTriangle() {
 
 function isCorrect(...args) {
   for (let arg of args) {
-    if (isNaN(arg) || arg === '') {
+    if (isNaN(arg) || arg === '' || arg === null) {
       alert('Enter the correct number');
       return 0;
     }
