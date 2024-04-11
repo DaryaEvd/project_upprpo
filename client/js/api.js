@@ -15,7 +15,7 @@ export async function postRequest(path, queryParams) {
   const searchParams = new URLSearchParams(queryParams);
   searchParams.append('client_id', getClientId());
   const response = await fetch(
-    `http://109.71.242.166:8080/shape/${path}?` + searchParams,
+    `http://109.71.242.166:8080/shape/${path}?` + searchParams ,
     { method: "POST" }
   ).catch((e) => alert(`Error: ${e.message}`));
   console.log("#", response);
