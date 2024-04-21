@@ -8,8 +8,10 @@
 
 	stages {
 		stage("delete workspace before build starts") {
-			echo 'Deleting workspace'
-			deleteDir()
+			steps {
+				echo 'Deleting workspace'
+				deleteDir()
+			}
 		}
 
 		stage("build") {
