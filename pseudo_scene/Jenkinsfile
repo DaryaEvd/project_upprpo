@@ -1,0 +1,28 @@
+pipeline {
+	agent any
+	tools {
+		maven 'maven'
+		jdk 'java19'
+	}
+	stages {
+		stage("install maven") {
+			agent {
+				docker {
+					image 'maven:3.9.6
+				}	
+			}
+//		}
+//		stage("build") {
+			steps {
+				 sh 'mvn -f pseudo_scene/pom.xml clean'
+			}
+			
+		}
+		
+		stage("test") {
+			steps {
+				 sh 'mvn -f pseudo_scene/pom.xml install'
+			}
+		}
+	}
+}
