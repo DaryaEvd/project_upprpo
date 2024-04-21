@@ -20,7 +20,12 @@
 				 sh 'mvn -f pseudo_scene/pom.xml install'
 			}
 		}
-		
+	
+		stage('Initialize'){
+       			def dockerHome = tool 'myDocker'
+		        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    		}
+	
 		stage("create docker image") {
 			steps {
 				echo " ====== start building image ===== "
