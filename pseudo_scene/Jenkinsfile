@@ -7,23 +7,17 @@
 	}
 
 	stages {
-		stage("delete workspace before build starts") {
-			steps {
-				echo 'Deleting workspace'
-				deleteDir()
-			}
-		}
 
 		stage("build") {
 			steps {
-				 sh 'mvn pseudo_scene/pom.xml clean'
+				 sh 'mvn -f pseudo_scene/pom.xml clean'
 			}
 			
 		}
 		
 		stage("test") {
 			steps {
-				 sh 'mvn -f pom.xml install'
+				 sh 'mvn -f pseudo_scene/pom.xml install'
 			}
 		}
 		
