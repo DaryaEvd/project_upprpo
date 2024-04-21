@@ -24,7 +24,7 @@
 		stage("create docker image") {
 			steps {
 				echo " ====== start building image ===== "
-				dir('pseudo_scene/') {
+				dir('.') {
 					sh 'docker build .'
 				}
 
