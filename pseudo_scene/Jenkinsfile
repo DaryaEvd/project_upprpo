@@ -9,7 +9,7 @@ tools {
             steps {
                 script {
                     // Define the Dockerfile location
-                    def dockerfilePath = 'project_upprpo/Dockerfile'
+                    def dockerfilePath = 'Dockerfile'
 
                     // Build the Docker image using the Dockerfile
                     def dockerImage = docker.build('maven:3.8.4-openjdk-19', '-f ' + dockerfilePath + ' .')
