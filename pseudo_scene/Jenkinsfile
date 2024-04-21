@@ -1,37 +1,30 @@
 pipeline {
-	agent any
-	tools {
-		maven 'maven'
-		jdk 'java19'
-	}
-	stages {
-		stage("install maven") {
-			agent {
-				docker {
-					image 'maven:3.9.6'
-				}	
-			}
-		}
-	
-			
-		stage("build") {
-			steps {
-				 sh 'mvn -f pseudo_scene/pom.xml clean'
-			}
-			
-		}
-	
-		stage("test") {
-			steps {
-				 sh 'mvn -f pseudo_scene/pom.xml install'
-			}
-		}
+    agent any
 
-		stage('Docker Build') {
-		      agent any
-		      steps {
-		        sh 'docker build -t project_upprpo/pseudo_scene:latest .'
-      			}
-    		}
-	}
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Define the Dockerfile location
+                    def dockerfilePath = 'pseudo_scene/Dockerfile'
+
+                    // Build the Docker image using the Dockerfile
+                    def dockerImage = docker.build('my-docker-image', '-f ' + dockerfilePath + ' .')
+
+                    // Push the Docker image to a registry (optional)
+                    dockerImage.push('my-docker-image:latest')
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Docker image built successfully'
+        }
+        failure {
+            echo 'Failed to build Docker image'
+        }
+    }
 }
+
