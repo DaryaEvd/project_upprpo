@@ -26,5 +26,12 @@ pipeline {
 				 sh 'mvn -f pseudo_scene/pom.xml install'
 			}
 		}
+
+		stage('Docker Build') {
+		      agent any
+		      steps {
+		        sh 'docker build -t project_upprpo/pseudo_scene:latest .'
+      			}
+    		}
 	}
 }
