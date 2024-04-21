@@ -16,14 +16,14 @@
 
 		stage("build") {
 			steps {
-				 sh 'mvn -f pseudo_scene/pom.xml clean'
+				 sh 'mvn -f pom.xml clean'
 			}
 			
 		}
 		
 		stage("test") {
 			steps {
-				 sh 'mvn -f pseudo_scene/pom.xml install'
+				 sh 'mvn -f pom.xml install'
 			}
 		}
 		
