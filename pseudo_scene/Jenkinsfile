@@ -19,6 +19,14 @@
 				 sh 'mvn -f pseudo_scene/pom.xml install'
 			}
 		}
+		
+		stage("build docker image") {
+			steps {
+				script {
+					sh 'docker build -t app_pseudo_scene/pseudo_scene .'
+				}
+			}
+		}
 	}
 	
 	post {
