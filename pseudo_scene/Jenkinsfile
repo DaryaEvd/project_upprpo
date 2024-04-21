@@ -6,13 +6,13 @@ pipeline {
             steps {
                 script {
                     // Define the Dockerfile location
-                    def dockerfilePath = 'pseudo_scene/Dockerfile'
+                    def dockerfilePath = 'Dockerfile'
 
                     // Build the Docker image using the Dockerfile
-                    def dockerImage = docker.build('my-docker-image', '-f ' + dockerfilePath + ' .')
+                    def dockerImage = docker.build('' maven:3.8.4-openjdk-19, '-f ' + dockerfilePath + ' .')
 
                     // Push the Docker image to a registry (optional)
-                    dockerImage.push('my-docker-image:latest')
+                    dockerImage.push('maven:3.8.4-openjdk-19:latest')
                 }
             }
         }
