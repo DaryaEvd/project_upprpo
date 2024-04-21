@@ -21,11 +21,13 @@
 			}
 		}
 		
-		stage("build docker image") {
+		stage("create docker image") {
 			steps {
-				script {
-					sh 'docker build -t pseudo_scene .'
+				echo " ====== start building image ===== "
+				dir('pseudo_scene/') {
+					sh 'docker build .'
 				}
+
 			}
 		}
 	}
