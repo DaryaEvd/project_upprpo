@@ -1,5 +1,5 @@
 # Use an official Maven image to build the application
-FROM  eclipse-temurin:11-jdk AS builder
+FROM  eclipse-temurin:19-jdk AS builder
 
 # Set the working directory in the container
 WORKDIR /app
@@ -17,7 +17,8 @@ COPY pseudo_scene/src ./src
 RUN mvn package
 
 # Use a lightweight JDK image to run the application
-FROM adoptopenjdk/openjdk17:latest
+#FROM adoptopenjdk/openjdk17:latest
+FROM eclipse-temurin:19
 
 # Set the working directory in the container
 WORKDIR /app
