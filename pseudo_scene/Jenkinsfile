@@ -3,7 +3,7 @@ pipeline {
 	
 tools {
 	maven 'maven'
-	jdk 'java17'
+	jdk 'java19'
 }
     stages {
 	stage("build") {
@@ -25,10 +25,10 @@ tools {
                     def dockerfilePath = 'Dockerfile'
 
                     // Build the Docker image using the Dockerfile
-                    def dockerImage = docker.build('maven:3.9.6-openjdk-17', '-f ' + dockerfilePath + ' .')
+                    def dockerImage = docker.build('maven:3.9.6-openjdk-19', '-f ' + dockerfilePath + ' .')
 
                     // Push the Docker image to a registry (optional)
-                    dockerImage.push('maven:3.9.6-openjdk-17:latest')
+                    dockerImage.push('maven:3.9.6-openjdk-19:latest')
                 }
             }
         }
