@@ -1,6 +1,7 @@
 # Use an official Maven image to build the application
 #FROM  eclipse-temurin:19-jdk AS builder
-FROM maven:3.9.6 AS builder
+#FROM maven:3.9.6 AS builder
+FROM maven:3.9.6-eclipse-temurin-17-alpine AS builder
 
 # Set the working directory in the container
 WORKDIR /app
