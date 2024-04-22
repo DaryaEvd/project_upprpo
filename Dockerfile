@@ -18,7 +18,8 @@ COPY pseudo_scene/src ./src
 RUN mvn package
 
 # Use a lightweight JDK image to run the application
-FROM eclipse-temurin:19.0.2_7-jre-jammy.
+#FROM eclipse-temurin:19.0.-jre-jammy.
+FROM eclipse-temurin:19-jdk-alpine
 
 # Set the working directory in the container
 WORKDIR /app
