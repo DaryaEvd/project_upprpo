@@ -2,9 +2,23 @@ pipeline {
     agent any
 	
 tools {
-	  'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'Docker'
+	'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'Docker'
+	maven 'maven'
+	jdk 'java19'
 }
     stages {
+	stage("build") {
+		steps {
+			 sh 'mvn -f pseudo_scene/pom.xml clean'
+		}
+	}	
+		
+	stage("test") {
+		steps {
+			 sh 'mvn -f pseudo_scene/pom.xml install'
+		}
+	}
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -12,10 +26,10 @@ tools {
                     def dockerfilePath = 'Dockerfile'
 
                     // Build the Docker image using the Dockerfile
-                    def dockerImage = docker.build('maven:3.8.4-openjdk-19', '-f ' + dockerfilePath + ' .')
+                    def dockerImage = docker.build('maven:3.9.6-openjdk-19', '-f ' + dockerfilePath + ' .')
 
                     // Push the Docker image to a registry (optional)
-                    dockerImage.push('maven:3.8.4-openjdk-19:latest')
+                    dockerImage.push('maven:3.9.6-openjdk-19:latest')
                 }
             }
         }
