@@ -17,7 +17,7 @@ COPY pseudo_scene/src ./src
 RUN mvn package
 
 # Use a lightweight JDK image to run the application
-FROM adoptopenjdk/openjdk19:latest
+FROM adoptopenjdk/openjdk17:latest
 
 # Set the working directory in the container
 WORKDIR /app
