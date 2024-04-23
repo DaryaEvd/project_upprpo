@@ -6,9 +6,16 @@ WORKDIR /app
 # Copy the Maven dependency file
 COPY pseudo_scene/pom.xml .
 
-# Install Maven and other dependencies
-RUN apk add --no-cache openjdk11 \
-    && mvn dependency:go-offline -B
+# Install OpenJDK 11
+RUN apk add --no-cache openjdk11
+
+# Manually install Maven
+RUN mkdir -p /usr/share/maven \
+    && wget -qO- https://downloads.apache.org/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz | tar zxvf - -C /usr/share/maven --strip-components=1 \
+    && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+
+# Download the Maven dependencies
+RUN mvn dependency:go-offline -B
 
 # Copy the application source code
 COPY pseudo_scene/src ./src
