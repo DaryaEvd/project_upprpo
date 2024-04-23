@@ -25,11 +25,11 @@ tools {
                     def dockerfilePath = 'Dockerfile'
 
                     // Build the Docker image using the Dockerfile
-                    def dockerImage = docker.build('my-maven-image:latest', '-f ' + dockerfilePath + ' .')
+                    def dockerImage = docker.build('mymavenimage', '-f ' + dockerfilePath + ' .')
                     
 			
 		    // Push the Docker image to a registry (optional)
-                    dockerImage.push('my-maven-image:latest')
+                    dockerImage.push('mymavenimage')
                 }
             }
         }
