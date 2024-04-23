@@ -29,7 +29,7 @@ tools {
                     
 			
 		    // Push the Docker image to a registry (optional)
-                    dockerImage.push('mymavenimage')
+                    dockerImage.push('maven:3.9.6-eclipse-temurin-17-alpine')
                 }
             }
         }
