@@ -25,14 +25,14 @@ tools {
                     def dockerfilePath = 'Dockerfile'
 
                     // Build the Docker image using the Dockerfile
-                    def dockerImage = docker.build('maven:3.9.6-eclipse-temurin-17-alpine', '-f ' + dockerfilePath + ' .')
+                    def dockerImage = docker.build('daryaevd/maven:3.9.6-eclipse-temurin-17-alpine', '-f ' + dockerfilePath + ' .')
 
                     def imageName = 'maven:3.9.6-eclipse-temurin-17-alpine'
                     def validImageName = imageName.replaceAll(/[^a-zA-Z0-9_-]/, '-') // Replace invalid characters with hyphens
 
 	// Tag the Docker image with the repository name and 'latest' tag
 //dockerImage.tag("daryaevd/${validImageName}", "latest")
-def dockerImage = docker.build("daryaevd/maven:3.9.6-eclipse-temurin-17-alpine")
+//def dockerImage = docker.build("daryaevd/maven:3.9.6-eclipse-temurin-17-alpine")
 
 // Push the Docker image to Docker Hub
 dockerImage.push("daryaevd/${validImageName}", "latest")
