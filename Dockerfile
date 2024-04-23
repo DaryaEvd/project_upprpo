@@ -10,9 +10,9 @@ COPY pseudo_scene/pom.xml .
 RUN apk add --no-cache openjdk11
 
 # Manually install Maven
-RUN mkdir -p /usr/share/maven \
-    && wget -qO- https://downloads.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz | tar zxvf - -C /usr/share/maven --strip-components=1 \
-    && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+#RUN mkdir -p /usr/share/maven \
+#    && wget -qO- https://downloads.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz | tar zxvf - -C /usr/share/maven --strip-components=1 \
+#    && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 # Download the Maven dependencies
 RUN mvn dependency:go-offline -B
