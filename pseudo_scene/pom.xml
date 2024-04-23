@@ -15,9 +15,6 @@
     <artifactId>pseudo_scene</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <maven.compiler.release>19</maven.compiler.release>
-    </properties>
 
     <build>
         <plugins>
