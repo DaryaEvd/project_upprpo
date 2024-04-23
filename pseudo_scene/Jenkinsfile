@@ -1,22 +1,23 @@
 pipeline {
     agent any
 
-tools {
-    maven 'maven'
-    jdk 'my_java19'
-}
+    tools {
+        maven 'maven'
+        jdk 'my_java19'
+    }
+    
     stages {
-    stage("build") {
-        steps {
-             sh 'mvn -f pseudo_scene/pom.xml clean'
+        stage("build") {
+            steps {
+                sh 'mvn -f pseudo_scene/pom.xml clean'
+            }
         }
-    }
 
-    stage("test") {
-        steps {
-             sh 'mvn -f pseudo_scene/pom.xml install'
+        stage("test") {
+            steps {
+                sh 'mvn -f pseudo_scene/pom.xml install'
+            }
         }
-    }
 
         stage('Build Docker Image') {
             steps {
@@ -30,17 +31,11 @@ tools {
                     def imageName = 'maven:3.9.6-eclipse-temurin-17-alpine'
                     def validImageName = imageName.replaceAll(/[^a-zA-Z0-9_-]/, '-') // Replace invalid characters with hyphens
 
-	// Tag the Docker image with the repository name and 'latest' tag
-//dockerImage.tag("daryaevd/${validImageName}", "latest")
+                    // Tag the Docker image with the repository name and 'latest' tag
+                    dockerImage.tag("daryaevd/${validImageName}:latest")
 
-dockerImage.tag("daryaevd/${validImageName}:latest") 
-// Push the Docker image to Docker Hub
-dockerImage.push("daryaevd/${validImageName}", "latest")
-
-
-
-//                    dockerImage.tag(validImageName)
-                    //dockerImage.push('daryaevd/' + validImageName)
+                    // Push the Docker image to Docker Hub
+                    dockerImage.push("daryaevd/${validImageName}:latest")
                 }
             }
         }
@@ -55,3 +50,4 @@ dockerImage.push("daryaevd/${validImageName}", "latest")
         }
     }
 }
+
