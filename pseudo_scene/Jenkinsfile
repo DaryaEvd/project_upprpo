@@ -1,33 +1,53 @@
- pipeline {
-	agent any
+pipeline {
+    agent any
 
-	tools {
-		maven 'maven'
-		jdk 'java19'
-	}
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub-scene')
+        }
 
-	stages {
-		stage("build") {
+    tools {
+        maven 'maven'
+        jdk 'my_java19'
+    }
+
+    stages {
+        stage("build") {
+            steps {
+                sh 'mvn -f pseudo_scene/pom.xml clean'
+            }
+        }
+
+        stage("test") {
+            steps {
+                sh 'mvn -f pseudo_scene/pom.xml install'
+            }
+        }
+
+        stage("build Docker image") {
 			steps {
-				 sh 'mvn -f pseudo_scene/pom.xml clean'
+				sh 'docker build -t daryaevd/maven-3.9.6-eclipse-temurin-17-alpine:$BUILD_NUMBER .'
 			}
-			
 		}
 		
-		stage("test") {
+		stage("login to dockerhub") {
 			steps {
-				 sh 'mvn -f pseudo_scene/pom.xml install'
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'				
 			}
 		}
-	}
-	
-	post {
-		failure {
-		  // notify users when the Pipeline fails
-			mail to: 'dhfingerstyle@gmail.com',
-			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-			body: "Something is wrong with ${env.BUILD_URL}"
+		
+		stage("push image") {
+			steps {
+				sh 'docker push daryaevd/maven-3.9.6-eclipse-temurin-17-alpine:$BUILD_NUMBER'
+			}
 		}
-	}
-	   
+    }
+
+    post {
+        success {
+            echo 'Docker image built successfully'
+        }
+        failure {
+            echo 'Failed to build Docker image'
+        }
+    }
 }
