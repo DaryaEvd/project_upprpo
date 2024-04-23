@@ -1,11 +1,15 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub-scene')
+        }
+
     tools {
         maven 'maven'
         jdk 'my_java19'
     }
-    
+
     stages {
         stage("build") {
             steps {
@@ -19,27 +23,23 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    def dockerfilePath = 'Dockerfile'
-
-                    // Build the Docker image using the Dockerfile
-                    //def dockerImage = docker.build('maven:3.9.6-eclipse-temurin-17-alpine', '-f ' + dockerfilePath + ' .')
-
-                    def imageName = 'maven:3.9.6-eclipse-temurin-17-alpine'
-                    def validImageName = imageName.replaceAll(/[^a-zA-Z0-9_-]/, '-') // Replace invalid characters with hyphens
-			
-                    def dockerImage = docker.build(validImageName, '-f' + dockerfilePath + ' .')
-
-                    // Tag the Docker image with the repository name and 'latest' tag
-                    dockerImage.tag("daryaevd/${validImageName}:latest")
-
-                    // Push the Docker image to Docker Hub
-                    dockerImage.push("daryaevd/${validImageName}:latest")
-                }
-            }
-        }
+        stage("build Docker image") {
+			steps {
+				sh 'docker build -t daryaevd/maven-3.9.6-eclipse-temurin-17-alpine:$BUILD_NUMBER .'
+			}
+		}
+		
+		stage("login to dockerhub") {
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'				
+			}
+		}
+		
+		stage("push image") {
+			steps {
+				sh 'docker push daryaevd/maven-3.9.6-eclipse-temurin-17-alpine:$BUILD_NUMBER'
+			}
+		}
     }
 
     post {
@@ -51,4 +51,3 @@ pipeline {
         }
     }
 }
-
