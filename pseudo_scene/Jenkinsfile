@@ -23,7 +23,8 @@ tools {
                 script {
                     // Define the Dockerfile location
                     def dockerfilePath = 'Dockerfile'
-
+			
+			def mymavenimage = 'maven:3.9.6-eclipse-temurin-17-alpine'
                     // Build the Docker image using the Dockerfile
                     def dockerImage = docker.build('mymavenimage', '-f ' + dockerfilePath + ' .')
                     
